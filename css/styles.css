@@ -240,4 +240,65 @@ html {
   padding-left: 30px;
 }
 
+/* ========================================
+   반응형 스타일 - 모바일 우선 @media 쿼리
+   ======================================== */
+
+/* 모바일 (최대 639px) - 작은 화면 */
+@media (max-width: 639px) {
+  /* 메인 슬로건: 화면 너비 벗어나지 않게 글씨 크기 조정 */
+  .hero-slogan {
+    font-size: 1.375rem; /* 22px */
+    line-height: 1.4;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 서브타이틀 */
+  .hero-subtitle {
+    font-size: 0.9375rem; /* 15px */
+  }
+
+  /* Activities 카드 이미지 - 모바일에서 적절한 높이 */
+  .activities-section img {
+    max-height: 10rem; /* 160px */
+  }
+
+  /* Testimonial 카드 모바일 너비 조정 */
+  .testimonial-scroll article {
+    min-width: calc(100vw - 5rem);
+    max-width: calc(100vw - 5rem);
+  }
+}
+
+/* 태블릿 (640px ~ 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-slogan {
+    font-size: 1.875rem; /* 30px */
+  }
+}
+
+/* 데스크톱 (1024px 이상) - 기본 스타일 유지 */
+@media (min-width: 1024px) {
+  .hero-slogan {
+    font-size: 3.75rem; /* 60px */
+  }
+}
+
+/* Activities 섹션 이미지 - 모바일에서 적절한 비율 유지 */
+@media (max-width: 639px) {
+  .activities-section .relative img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* Quiz 모달 - 모바일 여백 */
+@media (max-width: 639px) {
+  .quiz-modal-content {
+    margin: 0.5rem;
+    padding: 1.25rem;
+  }
+}
+
 
