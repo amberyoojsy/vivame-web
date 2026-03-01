@@ -1,0 +1,243 @@
+/**
+ * VIVAMI 19기 랜딩 페이지 공통 스타일
+ */
+
+* {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 애니메이션 */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  50% { transform: translateY(-20px) scale(1.2) rotate(90deg); }
+}
+
+.float-animation-1 {
+  animation: float 20s ease-in-out infinite;
+}
+
+.float-animation-2 {
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Testimonial carousel - scrollbar hidden, nav buttons */
+.testimonial-carousel {
+  padding: 0 48px;
+}
+
+@media (max-width: 639px) {
+  .testimonial-carousel {
+    padding: 0 44px;
+  }
+}
+
+.testimonial-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 0;
+}
+
+.testimonial-scroll::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+
+/* Navigation buttons - circular, Sky Blue/White, minimal */
+.testimonial-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid rgba(0, 181, 226, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: #00B5E2;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.testimonial-nav-btn:hover {
+  background: rgba(0, 181, 226, 0.06);
+  border-color: rgba(0, 181, 226, 0.4);
+  box-shadow: 0 2px 12px rgba(0, 181, 226, 0.12);
+}
+
+.testimonial-nav-btn:active {
+  background: rgba(0, 181, 226, 0.1);
+}
+
+.testimonial-nav-prev {
+  left: 0;
+}
+
+.testimonial-nav-next {
+  right: 0;
+}
+
+@media (max-width: 639px) {
+  .testimonial-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Hero section - paper crane as full bleed background */
+.hero-bg-paper-crane {
+  background-image: url("../assets/hero-paper-crane.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+}
+
+/* Soft gradient overlay - brand tint + natural blend */
+.hero-bg-gradient {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 120%,
+    rgba(0, 181, 226, 0.1) 0%,
+    rgba(0, 181, 226, 0.05) 40%,
+    transparent 70%
+  );
+}
+
+/* About Section - soft flow background, dissolved in light (atmosphere-elevating) */
+.about-section-bg {
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.6) 25%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.6) 75%,
+      rgba(255, 255, 255, 0.85) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(224, 242, 254, 0.5) 0%,
+      rgba(255, 255, 255, 0.7) 30%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0.7) 70%,
+      rgba(224, 242, 254, 0.5) 100%
+    ),
+    url("../assets/about-flow-bg.png") center / cover no-repeat;
+}
+
+/* Soft overlap layers - translucent bands, no sharp edges */
+.about-section-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      ellipse 120% 35% at 30% 50%,
+      rgba(0, 181, 226, 0.04) 0%,
+      rgba(0, 181, 226, 0.015) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 100% 40% at 70% 55%,
+      rgba(0, 181, 226, 0.03) 0%,
+      rgba(0, 181, 226, 0.01) 50%,
+      transparent 75%
+    );
+  pointer-events: none;
+}
+
+/* Light dissolve overlay - blend into white, no hard contours */
+.about-section-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+/* 지원서 질문 번호 배지 - 24~28px, 텍스트와 수직 정렬, 미니멀 톤 */
+.question-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #00B5E2;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 181, 226, 0.25);
+}
+
+.question-num-optional {
+  background: rgba(0, 181, 226, 0.75);
+  box-shadow: 0 1px 2px rgba(0, 181, 226, 0.2);
+}
+
+/* 예시·답변 영역 좌측 정렬 통일 (배지 22px + 간격 8px) */
+.question-body {
+  padding-left: 30px;
+}
+
+
