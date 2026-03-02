@@ -25,30 +25,16 @@ function closeQuizModal() {
   const result = document.getElementById('quizResult');
 
   if (questions) questions.classList.remove('hidden');
-  if (submitBtn) submitBtn.classList.add('hidden');
+  if (submitBtn) submitBtn.classList.remove('hidden');
   if (result) result.classList.add('hidden');
 
-  document.querySelectorAll('.answer-btn').forEach((btn) => {
-    btn.classList.remove('bg-[#00B5E2]', 'text-white', 'shadow-lg', 'bg-gray-800');
-    btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+  document.querySelectorAll('.quiz-checkbox').forEach((cb) => {
+    if (cb) cb.checked = false;
   });
 }
 
 function answerQuestion(questionId, answer) {
   quizAnswers[questionId] = answer;
-
-  const buttons = document.querySelectorAll(`[data-question="${questionId}"]`);
-  buttons.forEach((btn, index) => {
-    btn.classList.remove(
-      'bg-[#00B5E2]', 'text-white', 'shadow-lg', 'bg-gray-800',
-      'bg-white', 'text-gray-700'
-    );
-    if ((index === 0 && answer) || (index === 1 && !answer)) {
-      btn.classList.add(answer ? 'bg-[#00B5E2]' : 'bg-gray-800', 'text-white', 'shadow-lg');
-    } else {
-      btn.classList.add('bg-white', 'text-gray-700');
-    }
-  });
 
   const submitBtn = document.getElementById('submitQuizBtn');
   if (Object.keys(quizAnswers).length === 4 && submitBtn) {
@@ -75,7 +61,7 @@ function submitQuiz() {
       </div>
       <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">축하합니다! 🎉</h4>
       <p class="text-lg text-gray-700">
-        당신은 VIVAME에 완벽하게 적합합니다!<br />
+        당신은 비바미에 완벽하게 적합합니다!<br />
         지금 바로 지원하여 변화의 주인공이 되어보세요.
       </p>
       <a href="./apply.html" class="inline-block px-8 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">
@@ -89,7 +75,7 @@ function submitQuiz() {
       </div>
       <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">조금 더 고민해보세요</h4>
       <p class="text-lg text-gray-700">
-        VIVAME 활동에 대해 조금 더 알아보신 후<br />
+        비바미 활동에 대해 조금 더 알아보신 후<br />
         다시 도전해보시는 건 어떨까요?
       </p>
       <button type="button" onclick="closeQuizModal()" class="px-8 py-4 bg-gray-800 text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">

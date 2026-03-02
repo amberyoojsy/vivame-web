@@ -623,10 +623,10 @@
                 <div class="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
                 <div class="relative z-10">
                     <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-6">
-                        나도 VIVAME가 될 수 있을까?
+                        나도 비바미가 될 수 있을까?
                     </h2>
                     <p class="text-lg lg:text-xl text-white/90 mb-8">
-                        10초면 충분합니다. 간단한 테스트로 확인해보세요!
+                        가볍게 체크해보는 10초.
                     </p>
                     <button type="button" onclick="openQuizModal()" class="px-8 py-4 bg-white text-[#00B5E2] rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         지금 테스트하기
@@ -643,72 +643,33 @@
         <div class="quiz-modal-content bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-2 sm:mx-4">
             <div class="flex items-center justify-between mb-8">
                 <h3 class="text-2xl lg:text-3xl font-bold text-gray-900">
-                    VIVAME 적합도 테스트
+                    비바미 적합도 테스트
                 </h3>
                 <button onclick="closeQuizModal()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
 
-            <div id="quizQuestions" class="space-y-6">
-                <div class="p-6 bg-gray-50 rounded-2xl space-y-4">
-                    <p class="font-medium text-gray-900">
-                        1. 비상의 가치를 동료들과 나누는 것에 관심이 있나요?
-                    </p>
-                    <div class="flex gap-3">
-                        <button onclick="answerQuestion('q1', true)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-[#00B5E2]" data-question="q1">
-                            예
-                        </button>
-                        <button onclick="answerQuestion('q1', false)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-gray-800" data-question="q1">
-                            아니오
-                        </button>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-2xl space-y-4">
-                    <p class="font-medium text-gray-900">
-                        2. 새로운 사람들과의 네트워킹을 즐기시나요?
-                    </p>
-                    <div class="flex gap-3">
-                        <button onclick="answerQuestion('q2', true)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-[#00B5E2]" data-question="q2">
-                            예
-                        </button>
-                        <button onclick="answerQuestion('q2', false)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-gray-800" data-question="q2">
-                            아니오
-                        </button>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-2xl space-y-4">
-                    <p class="font-medium text-gray-900">
-                        3. 창의적인 아이디어로 조직 문화를 개선하고 싶으신가요?
-                    </p>
-                    <div class="flex gap-3">
-                        <button onclick="answerQuestion('q3', true)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-[#00B5E2]" data-question="q3">
-                            예
-                        </button>
-                        <button onclick="answerQuestion('q3', false)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-gray-800" data-question="q3">
-                            아니오
-                        </button>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-2xl space-y-4">
-                    <p class="font-medium text-gray-900">
-                        4. 사회공헌 활동에 적극적으로 참여하고 싶으신가요?
-                    </p>
-                    <div class="flex gap-3">
-                        <button onclick="answerQuestion('q4', true)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-[#00B5E2]" data-question="q4">
-                            예
-                        </button>
-                        <button onclick="answerQuestion('q4', false)" class="answer-btn flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-white text-gray-700 border border-gray-200 hover:border-gray-800" data-question="q4">
-                            아니오
-                        </button>
-                    </div>
-                </div>
+            <div id="quizQuestions" class="space-y-4">
+                <label class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors">
+                    <input type="checkbox" onchange="answerQuestion('q1', this.checked)" class="quiz-checkbox mt-1 w-5 h-5 rounded border-gray-300 text-[#00B5E2] focus:ring-[#00B5E2]" data-question="q1">
+                    <span class="font-medium text-gray-900">"이거 비바미가 하면 딱인데?"라고 한 번쯤 생각해본 적 있다.</span>
+                </label>
+                <label class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors">
+                    <input type="checkbox" onchange="answerQuestion('q2', this.checked)" class="quiz-checkbox mt-1 w-5 h-5 rounded border-gray-300 text-[#00B5E2] focus:ring-[#00B5E2]" data-question="q2">
+                    <span class="font-medium text-gray-900">재미있는 일엔 슬쩍 발 담가보고 싶은 편이다.</span>
+                </label>
+                <label class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors">
+                    <input type="checkbox" onchange="answerQuestion('q3', this.checked)" class="quiz-checkbox mt-1 w-5 h-5 rounded border-gray-300 text-[#00B5E2] focus:ring-[#00B5E2]" data-question="q3">
+                    <span class="font-medium text-gray-900">누군가를 도와주면 괜히 기분이 좋아진다.</span>
+                </label>
+                <label class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors">
+                    <input type="checkbox" onchange="answerQuestion('q4', this.checked)" class="quiz-checkbox mt-1 w-5 h-5 rounded border-gray-300 text-[#00B5E2] focus:ring-[#00B5E2]" data-question="q4">
+                    <span class="font-medium text-gray-900">회사가 조금 더 즐거워지면 좋겠다고 생각한 적 있다.</span>
+                </label>
             </div>
 
-            <button id="submitQuizBtn" onclick="submitQuiz()" class="hidden w-full px-8 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300 mt-6">
+            <button id="submitQuizBtn" onclick="submitQuiz()" class="w-full px-8 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300 mt-6">
                 결과 확인하기
             </button>
 

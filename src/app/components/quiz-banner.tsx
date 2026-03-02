@@ -4,19 +4,19 @@ import { CheckCircle2, XCircle, X } from "lucide-react";
 
 const quizQuestions = [
   {
-    question: "비상의 가치를 동료들과 나누는 것에 관심이 있나요?",
+    question: '"이거 비바미가 하면 딱인데?"라고 한 번쯤 생각해본 적 있다.',
     id: "q1",
   },
   {
-    question: "새로운 사람들과의 네트워킹을 즐기시나요?",
+    question: "재미있는 일엔 슬쩍 발 담가보고 싶은 편이다.",
     id: "q2",
   },
   {
-    question: "창의적인 아이디어로 조직 문화를 개선하고 싶으신가요?",
+    question: "누군가를 도와주면 괜히 기분이 좋아진다.",
     id: "q3",
   },
   {
-    question: "사회공헌 활동에 적극적으로 참여하고 싶으신가요?",
+    question: "회사가 조금 더 즐거워지면 좋겠다고 생각한 적 있다.",
     id: "q4",
   },
 ];
@@ -56,7 +56,7 @@ export function QuizBanner() {
                 viewport={{ once: true }}
                 className="text-3xl lg:text-5xl font-bold text-white mb-6"
               >
-                나도 VIVAME가 될 수 있을까?
+                나도 비바미가 될 수 있을까?
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export function QuizBanner() {
                 transition={{ delay: 0.1 }}
                 className="text-lg lg:text-xl text-white/90 mb-8"
               >
-                10초면 충분합니다. 간단한 테스트로 확인해보세요!
+                가볍게 체크해보는 10초.
               </motion.p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -107,7 +107,7 @@ export function QuizBanner() {
             >
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                  VIVAME 적합도 테스트
+                  비바미 적합도 테스트
                 </h3>
                 <button
                   onClick={() => {
@@ -122,42 +122,23 @@ export function QuizBanner() {
               </div>
 
               {!showResult ? (
-                <div className="space-y-6">
-                  {quizQuestions.map((q, index) => (
-                    <div
+                <div className="space-y-4">
+                  {quizQuestions.map((q) => (
+                    <label
                       key={q.id}
-                      className="p-6 bg-gray-50 rounded-2xl space-y-4"
+                      className="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors"
                     >
-                      <p className="font-medium text-gray-900">
-                        {index + 1}. {q.question}
-                      </p>
-                      <div className="flex gap-3">
-                        <button
-                          onClick={() => handleAnswer(q.id, true)}
-                          className={`flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                            answers[q.id] === true
-                              ? "bg-[#00B7F1] text-white shadow-lg"
-                              : "bg-white text-gray-700 border border-gray-200 hover:border-[#00B7F1]"
-                          }`}
-                        >
-                          예
-                        </button>
-                        <button
-                          onClick={() => handleAnswer(q.id, false)}
-                          className={`flex-1 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                            answers[q.id] === false
-                              ? "bg-gray-800 text-white shadow-lg"
-                              : "bg-white text-gray-700 border border-gray-200 hover:border-gray-800"
-                          }`}
-                        >
-                          아니오
-                        </button>
-                      </div>
-                    </div>
+                      <input
+                        type="checkbox"
+                        checked={answers[q.id] === true}
+                        onChange={(e) => handleAnswer(q.id, e.target.checked)}
+                        className="mt-1 w-5 h-5 rounded border-gray-300 text-[#00B7F1] focus:ring-[#00B7F1]"
+                      />
+                      <span className="font-medium text-gray-900">{q.question}</span>
+                    </label>
                   ))}
 
-                  {Object.keys(answers).length === quizQuestions.length && (
-                    <motion.button
+                  <motion.button
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       whileHover={{ scale: 1.02 }}
@@ -167,7 +148,6 @@ export function QuizBanner() {
                     >
                       결과 확인하기
                     </motion.button>
-                  )}
                 </div>
               ) : (
                 <motion.div
@@ -184,7 +164,7 @@ export function QuizBanner() {
                         축하합니다! 🎉
                       </h4>
                       <p className="text-lg text-gray-700">
-                        당신은 VIVAME에 완벽하게 적합합니다!
+                        당신은 비바미에 완벽하게 적합합니다!
                         <br />
                         지금 바로 지원하여 변화의 주인공이 되어보세요.
                       </p>
@@ -207,7 +187,7 @@ export function QuizBanner() {
                         조금 더 고민해보세요
                       </h4>
                       <p className="text-lg text-gray-700">
-                        VIVAME 활동에 대해 조금 더 알아보신 후<br />
+                        비바미 활동에 대해 조금 더 알아보신 후<br />
                         다시 도전해보시는 건 어떨까요?
                       </p>
                       <button
