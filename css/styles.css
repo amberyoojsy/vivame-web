@@ -357,29 +357,14 @@ p,
 .quiz-question-text {
   flex: 1 1 0;
   min-width: 0;
-  max-width: calc(100% - 140px - 2rem);
   font-size: 0.9375rem;
   font-weight: 500;
   color: #1f2937;
   line-height: 1.6;
   text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media (min-width: 640px) {
-  .quiz-question-text {
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 639px) {
-  .quiz-question-text {
-    white-space: normal;
-    max-width: 100%;
-    overflow: visible;
-    text-overflow: unset;
-  }
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
 }
 
 /* Pill 세그먼트 컨트롤 */
