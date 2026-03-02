@@ -337,7 +337,7 @@ p,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 2.5rem;
   padding: 1rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -360,6 +360,7 @@ p,
   font-weight: 500;
   color: #1f2937;
   line-height: 1.6;
+  margin-right: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -378,6 +379,7 @@ p,
 .quiz-pill-segment {
   display: flex;
   flex-shrink: 0;
+  margin-left: 0.5rem;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 9999px;
