@@ -640,49 +640,49 @@
 
     <!-- Quiz Modal -->
     <div id="quizModal" class="quiz-modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-        <div id="quizModalBackdrop" class="absolute inset-0 bg-black/45" onclick="closeQuizModal()"></div>
-        <div id="quizModalContent" class="quiz-modal-popup relative bg-white rounded-[24px] p-6 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-xl shadow-black/10">
-            <button type="button" onclick="closeQuizModal()" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" aria-label="닫기">
+        <div id="quizModalBackdrop" class="absolute inset-0 bg-black/40" onclick="closeQuizModal()"></div>
+        <div id="quizModalContent" class="quiz-modal-popup relative rounded-[24px] p-6 sm:p-10 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="closeQuizModal()" class="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors" aria-label="닫기">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
 
             <div id="quizSection">
-                <h3 class="text-xl lg:text-2xl font-bold text-gray-900 pr-10 mb-6">
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-900 pr-12 mb-10">
                     혹시, 당신도 비바미?
                 </h3>
 
-                <div id="quizQuestions" class="space-y-4">
-                    <div class="flex items-center gap-3 sm:gap-4 py-3 border-b border-gray-100">
-                        <p class="flex-1 font-medium text-gray-900 text-sm sm:text-base">"이거 비바미가 하면 딱인데?"라고 한 번쯤 생각해본 적 있다.</p>
-                        <div class="flex flex-shrink-0 gap-2">
-                            <button type="button" onclick="answerQuestion('q1', true)" data-question="q1" data-answer="yes" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">네</button>
-                            <button type="button" onclick="answerQuestion('q1', false)" data-question="q1" data-answer="no" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">아니오</button>
+                <div id="quizQuestions" class="quiz-questions-list">
+                    <div class="quiz-question-row">
+                        <p class="quiz-question-text">"이거 비바미가 하면 딱인데?"라고 생각해본 적 있다.</p>
+                        <div class="quiz-pill-segment" data-question="q1">
+                            <button type="button" onclick="answerQuestion('q1', true)" data-question="q1" data-answer="yes" class="quiz-pill-btn quiz-pill-unselected">네</button>
+                            <button type="button" onclick="answerQuestion('q1', false)" data-question="q1" data-answer="no" class="quiz-pill-btn quiz-pill-unselected">아니오</button>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 sm:gap-4 py-3 border-b border-gray-100">
-                        <p class="flex-1 font-medium text-gray-900 text-sm sm:text-base">재미있는 일엔 슬쩍 발 담가보고 싶은 편이다.</p>
-                        <div class="flex flex-shrink-0 gap-2">
-                            <button type="button" onclick="answerQuestion('q2', true)" data-question="q2" data-answer="yes" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">네</button>
-                            <button type="button" onclick="answerQuestion('q2', false)" data-question="q2" data-answer="no" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">아니오</button>
+                    <div class="quiz-question-row">
+                        <p class="quiz-question-text">재미있는 일엔 슬쩍 발 담가보고 싶은 편이다.</p>
+                        <div class="quiz-pill-segment" data-question="q2">
+                            <button type="button" onclick="answerQuestion('q2', true)" data-question="q2" data-answer="yes" class="quiz-pill-btn quiz-pill-unselected">네</button>
+                            <button type="button" onclick="answerQuestion('q2', false)" data-question="q2" data-answer="no" class="quiz-pill-btn quiz-pill-unselected">아니오</button>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 sm:gap-4 py-3 border-b border-gray-100">
-                        <p class="flex-1 font-medium text-gray-900 text-sm sm:text-base">누군가를 도와주면 괜히 기분이 좋아진다.</p>
-                        <div class="flex flex-shrink-0 gap-2">
-                            <button type="button" onclick="answerQuestion('q3', true)" data-question="q3" data-answer="yes" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">네</button>
-                            <button type="button" onclick="answerQuestion('q3', false)" data-question="q3" data-answer="no" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">아니오</button>
+                    <div class="quiz-question-row">
+                        <p class="quiz-question-text">누군가를 도와주면 괜히 기분이 좋아진다.</p>
+                        <div class="quiz-pill-segment" data-question="q3">
+                            <button type="button" onclick="answerQuestion('q3', true)" data-question="q3" data-answer="yes" class="quiz-pill-btn quiz-pill-unselected">네</button>
+                            <button type="button" onclick="answerQuestion('q3', false)" data-question="q3" data-answer="no" class="quiz-pill-btn quiz-pill-unselected">아니오</button>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 sm:gap-4 py-3 border-b border-gray-100">
-                        <p class="flex-1 font-medium text-gray-900 text-sm sm:text-base">회사가 조금 더 즐거워지면 좋겠다고 생각한 적 있다.</p>
-                        <div class="flex flex-shrink-0 gap-2">
-                            <button type="button" onclick="answerQuestion('q4', true)" data-question="q4" data-answer="yes" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">네</button>
-                            <button type="button" onclick="answerQuestion('q4', false)" data-question="q4" data-answer="no" class="quiz-yesno-btn quiz-yesno-unselected min-w-[52px] sm:min-w-[60px] px-4 sm:px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px]">아니오</button>
+                    <div class="quiz-question-row">
+                        <p class="quiz-question-text">회사가 더 즐거워지면 좋겠다고 생각한 적 있다.</p>
+                        <div class="quiz-pill-segment" data-question="q4">
+                            <button type="button" onclick="answerQuestion('q4', true)" data-question="q4" data-answer="yes" class="quiz-pill-btn quiz-pill-unselected">네</button>
+                            <button type="button" onclick="answerQuestion('q4', false)" data-question="q4" data-answer="no" class="quiz-pill-btn quiz-pill-unselected">아니오</button>
                         </div>
                     </div>
                 </div>
 
-                <button type="button" id="submitQuizBtn" onclick="submitQuiz()" class="w-full mt-6 px-6 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200">
+                <button type="button" id="submitQuizBtn" onclick="submitQuiz()" class="w-full mt-8 px-6 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200">
                     결과 보기
                 </button>
             </div>

@@ -310,13 +310,8 @@ p,
 }
 
 .quiz-modal-popup {
-  background: linear-gradient(
-    165deg,
-    #ffffff 0%,
-    #f8fcff 40%,
-    #f0faff 100%
-  );
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 181, 226, 0.08);
+  background: #fefefe;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
   animation: quizModalEnter 0.3s ease-out forwards;
 }
 
@@ -331,35 +326,91 @@ p,
   }
 }
 
-/* Quiz 네/아니오 버튼 */
-.quiz-yesno-btn {
+/* Quiz 질문 목록 */
+.quiz-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.quiz-question-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 639px) {
+  .quiz-question-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}
+
+.quiz-question-row:last-child {
+  border-bottom: none;
+}
+
+.quiz-question-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .quiz-question-text {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 639px) {
+  .quiz-question-text {
+    white-space: normal;
+  }
+}
+
+/* Pill 세그먼트 컨트롤 */
+.quiz-pill-segment {
+  display: flex;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  padding: 2px;
+  min-height: 44px;
+}
+
+.quiz-pill-btn {
   -webkit-tap-highlight-color: transparent;
+  min-width: 56px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
-.quiz-yesno-unselected {
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  color: #64748b;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+.quiz-pill-btn:hover {
+  color: #374151;
 }
 
-.quiz-yesno-unselected:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #475569;
+.quiz-pill-unselected {
+  background: transparent;
 }
 
-.quiz-yesno-selected[data-answer="yes"] {
+.quiz-pill-selected {
   background: #00B5E2;
-  border: 1.5px solid #00B5E2;
-  color: white;
-  box-shadow: 0 1px 3px rgba(0, 181, 226, 0.25);
-}
-
-.quiz-yesno-selected[data-answer="no"] {
-  background: #475569;
-  border: 1.5px solid #475569;
-  color: white;
+  color: white !important;
+  box-shadow: 0 1px 2px rgba(0, 181, 226, 0.2);
 }
 
 /* Quiz 결과 섹션 스타일 */

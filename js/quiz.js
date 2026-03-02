@@ -69,9 +69,9 @@ function closeQuizModal() {
 
   if (quizSection) quizSection.classList.remove("hidden");
   if (questions) {
-    questions.querySelectorAll(".quiz-yesno-btn").forEach((btn) => {
-      btn.classList.remove("quiz-yesno-selected");
-      btn.classList.add("quiz-yesno-unselected");
+    questions.querySelectorAll(".quiz-pill-btn").forEach((btn) => {
+      btn.classList.remove("quiz-pill-selected");
+      btn.classList.add("quiz-pill-unselected");
     });
   }
   if (submitBtn) submitBtn.classList.remove("hidden");
@@ -85,14 +85,14 @@ function handleQuizEscape(e) {
 function answerQuestion(questionId, answer) {
   quizAnswers[questionId] = answer;
 
-  const btns = document.querySelectorAll(`[data-question="${questionId}"]`);
+  const btns = document.querySelectorAll(`.quiz-pill-segment[data-question="${questionId}"] .quiz-pill-btn`);
   btns.forEach((btn) => {
-    btn.classList.remove("quiz-yesno-selected", "quiz-yesno-unselected");
+    btn.classList.remove("quiz-pill-selected", "quiz-pill-unselected");
     const isYes = btn.dataset.answer === "yes";
     if ((isYes && answer) || (!isYes && !answer)) {
-      btn.classList.add("quiz-yesno-selected");
+      btn.classList.add("quiz-pill-selected");
     } else {
-      btn.classList.add("quiz-yesno-unselected");
+      btn.classList.add("quiz-pill-unselected");
     }
   });
 }
