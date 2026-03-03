@@ -191,34 +191,61 @@ p,
   height: 0;
 }
 
-/* Navigation buttons - circular, Sky Blue/White, minimal */
+/* Testimonial avatar - 4 soft accent colors (brand-friendly) */
+.testimonial-avatar {
+  transition: transform 0.2s ease;
+}
+
+.testimonial-avatar-1 {
+  background: linear-gradient(135deg, #00B5E2 0%, #5AC8E8 100%);
+}
+
+.testimonial-avatar-2 {
+  background: linear-gradient(135deg, #4DB6A8 0%, #7DD3C8 100%);
+}
+
+.testimonial-avatar-3 {
+  background: linear-gradient(135deg, #5B7A9E 0%, #7A9BC4 100%);
+}
+
+.testimonial-avatar-4 {
+  background: linear-gradient(135deg, #8B7DA8 0%, #A89DC4 100%);
+}
+
+/* Navigation buttons - improved visibility, hover scale, touch target */
 .testimonial-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  -webkit-tap-highlight-color: transparent;
   z-index: 10;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border: 1px solid rgba(0, 181, 226, 0.25);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  color: #00B5E2;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 181, 226, 0.4);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 181, 226, 0.1);
+  color: #0099C4;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s, color 0.25s;
 }
 
 .testimonial-nav-btn:hover {
-  background: rgba(0, 181, 226, 0.06);
-  border-color: rgba(0, 181, 226, 0.4);
-  box-shadow: 0 2px 12px rgba(0, 181, 226, 0.12);
+  background: rgba(0, 181, 226, 0.12);
+  border-color: rgba(0, 181, 226, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 181, 226, 0.18);
+  color: #007A9E;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .testimonial-nav-btn:active {
-  background: rgba(0, 181, 226, 0.1);
+  background: rgba(0, 181, 226, 0.18);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .testimonial-nav-prev {
@@ -231,8 +258,14 @@ p,
 
 @media (max-width: 639px) {
   .testimonial-nav-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .testimonial-nav-btn:hover {
+    transform: translateY(-50%) scale(1.08);
   }
 }
 
