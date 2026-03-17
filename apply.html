@@ -75,6 +75,8 @@
 
             <!-- Form -->
             <form id="applicationForm" class="bg-white rounded-3xl p-8 lg:p-12 shadow-xl space-y-8">
+                <!-- Honeypot: Formspree 스팸 필터용 (사용자에게 보이지 않음) -->
+                <input type="text" name="_gotcha" id="_gotcha" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <!-- 기본 정보 -->
                 <div class="space-y-6">
                     <div>

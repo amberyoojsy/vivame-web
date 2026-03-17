@@ -82,13 +82,15 @@ function initApplyForm() {
     e.preventDefault();
     if (!isFormValid() || !successModal) return;
 
+    const gotchaEl = document.getElementById('_gotcha');
     const payload = {
       name: fields.name?.value?.trim() ?? '',
       cell: fields.cell?.value?.trim() ?? '',
       reason: fields.reason?.value?.trim() ?? '',
       expectations: fields.expectations?.value?.trim() ?? '',
       recommend: fields.recommend?.value?.trim() ?? '',
-      agree: fields.agree?.checked ? '동의' : ''
+      agree: fields.agree?.checked ? '동의' : '',
+      _gotcha: (gotchaEl && gotchaEl.value) || ''
     };
 
     const hasEndpoint = SUBMIT_ENDPOINT.length > 0;
