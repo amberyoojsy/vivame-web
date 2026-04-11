@@ -1292,6 +1292,12 @@ p,
   overflow-wrap: break-word;
 }
 
+/* 카드 요약 — 데이터의 줄바꿈(\n) 반영·중앙 정렬(카드뉴스형) */
+.club-card-summary {
+  text-align: center;
+  white-space: pre-line;
+}
+
 /* ========================================
    Quiz Modal - 혹시, 당신도 비바미?
    ======================================== */
