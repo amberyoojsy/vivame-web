@@ -35,22 +35,22 @@ function scrollToSection(id) {
 
 var CLUB_PORTAL_CLUBS = [
   {
-    name: "모종의 시작 (공포/호러)",
-    tagline: "짜릿한 전율, 공포 영화를 사랑하는 CP님들의 모임",
+    name: "모종의 시작 (도시농부/가드닝)",
+    tagline: "회사 옥상에서 펼쳐지는 초록빛 힐링, 도시 농부의 삶",
     summary:
-      "혼자 보기 무서운 영화도 함께라면 즐겁습니다. 업무 스트레스를 시원하게 날려버릴 파티원을 모집합니다.",
-    detail: `"공포 겜 좋아하는 CP님들이 많이 안 계십니다... 호러 러버 CP님들이라면 어서 빨리 씨몬(C'mon)!" 공포 영화, 호러 게임, 미스터리 장르를 즐기는 분들을 위한 극강의 P 환영 모임입니다.
+      "회사 옥상 정원을 아지트로 삼아 직접 모종을 심고 가꿉니다. 내 손으로 키운 식물이 주는 정직한 기쁨을 함께 나눠요.",
+    detail: `말 그대로 '모종'으로 시작하는 우리들의 초록색 프로젝트! 회사 옥상이라는 특별한 공간에서 식물을 키우며 도심 속 농부의 삶을 경험합니다. '장비빨' 좀 세우고 싶은 가드닝 장비 마니아부터, 내 식물은 내가 책임지는 '주인정신' 투철한 분들까지 모두 환영합니다. 옥상에서 함께 땀 흘리고 식물이 자라는 모습을 보며 업무 스트레스를 건강하게 해소해 보세요.
 
 [찰떡궁합] 이런 분:
-* 공포 영화를 좋아하지만 혼자 보기는 두려운 분
+* 회사 옥상을 나만의 작은 숲으로 가꿔보고 싶은 분
 
-장르물(호러, 스릴러)에 진심인 마니아
+* 식물을 죽이는 '마이너스의 손'에서 '초록 손'으로 거듭나고 싶은 분
 
-함께 게임하고 영화 보며 스트레스를 풀고 싶은 분`,
+* 직접 키운 작물을 수확하는 정직한 성취감을 느끼고 싶은 분`,
     leaderInfo: "리더/총무: 김세별 / 심형석",
     email: "vivame.clubs.01@visang.com",
     image: "./assets/club-image-1.png",
-    badge: "공포/호러",
+    badge: "도시농부/가드닝",
   },
   {
     name: "AVOCADO (맛집/문화)",
@@ -442,13 +442,13 @@ function renderClubCards() {
       "</span></div>" +
       "</div>" +
       '<div class="p-4 sm:p-6">' +
-      '<h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">' +
+      '<h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 text-content">' +
       escapeHtmlText(club.name) +
       "</h3>" +
-      '<p class="text-sm text-[#00B5E2] font-medium mb-3">' +
+      '<p class="text-sm text-[#00B5E2] font-medium mb-3 text-content">' +
       escapeHtmlText(club.tagline) +
       "</p>" +
-      '<p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">' +
+      '<p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line text-content">' +
       escapeHtmlText(club.summary) +
       "</p>" +
       "</div></div></button></div>"
