@@ -1357,20 +1357,27 @@ p,
   margin-bottom: 0;
 }
 
-/* 찰떡궁합 리스트 — 줄 단위 중앙 정렬·동일 간격·keep-all */
+/* 찰떡궁합 리스트 — 본문·리더 섹션과 동일 수직 리듬, 좌측 정렬(블록은 가운데 배치) */
 .club-modal-fit-wrap {
   margin: 0 auto;
   width: 100%;
   max-width: 36rem;
-  padding: 0 0.25rem var(--club-modal-gap);
+  padding: 0 0.75rem var(--club-modal-gap);
   box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .club-modal-fit-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .club-modal-fit-list {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.75rem;
+  gap: 0.35rem;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -1380,10 +1387,10 @@ p,
   margin: 0;
   padding: 0;
   width: 100%;
-  text-align: center;
-  font-size: clamp(0.9375rem, 2.15vw, 1.0625rem);
+  text-align: left;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 2;
+  line-height: 1.65;
   color: #1f2937;
   word-break: keep-all;
   overflow-wrap: break-word;

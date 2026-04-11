@@ -396,7 +396,7 @@ function buildMailtoUrl(email) {
 var CLUB_MODAL_FIT_HEADLINE = "✨ 이런 CP님, 우리와 찰떡이에요!";
 
 /**
- * 찰떡궁합 구간 — 줄마다 <p>로 감싸 가로 중앙 정렬이 흐트러지지 않게 함
+ * 찰떡궁합 구간 — 줄마다 <p>로 감싸고, 선행 별표(*)·공백 제거
  * @param {string} raw
  * @returns {string}
  */
@@ -404,7 +404,9 @@ function formatFitBulletLinesHtml(raw) {
   var lines = String(raw)
     .split(/\r?\n/)
     .map(function (line) {
-      return line.trim();
+      return line
+        .trim()
+        .replace(/^\*\s*/, "");
     })
     .filter(function (line) {
       return line.length > 0;
