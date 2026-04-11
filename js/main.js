@@ -824,6 +824,11 @@ function renderClubCards() {
 /** 원모어 정기모임: 매주 화·목 (0=일 … 6=토) */
 var CLUB_SCHEDULE_WONMORE_WEEKDAYS = [2, 4];
 var CLUB_SCHEDULE_WONMORE_LABEL = "💪 원모어 정기모임";
+/** 일정 클릭 시 툴팁에 표시 (예시) */
+var CLUB_SCHEDULE_WONMORE_TOOLTIP =
+  "💪 원모어 정기모임 / 19:00 / 5층 피트니스 센터";
+
+var clubScheduleInteractionBound = false;
 
 function clubScheduleMonthLabelKo(year, monthIndex) {
   return new Date(year, monthIndex, 1).toLocaleDateString("ko-KR", {
@@ -860,15 +865,27 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
         CLUB_SCHEDULE_WONMORE_LABEL +
         "</span></div>";
     }
+    var ariaLabel = monthLabel + " " + d + "일";
+    if (has) ariaLabel += ", " + CLUB_SCHEDULE_WONMORE_LABEL;
     cells.push(
-      '<div class="club-cal-cell' +
+      '<button type="button" class="club-cal-day-btn club-cal-cell' +
         (has ? " club-cal-cell--event" : "") +
-        '">' +
-        '<span class="club-cal-day-num">' +
+        '" data-cal-y="' +
+        year +
+        '" data-cal-m="' +
+        monthIndex +
+        '" data-cal-d="' +
         d +
-        "</span>" +
+        '" data-cal-has-event="' +
+        (has ? "true" : "false") +
+        '" aria-pressed="false" aria-label="' +
+        escapeHtmlAttr(ariaLabel) +
+        '">' +
+        '<span class="club-cal-day-num-wrap"><span class="club-cal-day-num">' +
+        d +
+        "</span></span>" +
         inner +
-        "</div>"
+        "</button>"
     );
   }
   var used = firstDow + daysInMonth;
@@ -901,9 +918,121 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
   );
 }
 
+function hideClubScheduleTooltip() {
+  var tip = document.getElementById("clubScheduleTooltip");
+  if (!tip) return;
+  tip.classList.remove("is-visible");
+  tip.setAttribute("hidden", "");
+  tip.style.top = "";
+  tip.style.left = "";
+}
+
+function showClubScheduleTooltip(anchorBtn) {
+  var tip = document.getElementById("clubScheduleTooltip");
+  var textEl = document.getElementById("clubScheduleTooltipText");
+  if (!tip || !textEl || !anchorBtn) return;
+  textEl.textContent = CLUB_SCHEDULE_WONMORE_TOOLTIP;
+  tip.classList.remove("is-visible");
+  tip.removeAttribute("hidden");
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      var rect = anchorBtn.getBoundingClientRect();
+      var tw = tip.offsetWidth;
+      var th = tip.offsetHeight;
+      var gap = 10;
+      var top = rect.top - th - gap;
+      var left = rect.left + rect.width / 2 - tw / 2;
+      var pad = 12;
+      left = Math.max(pad, Math.min(left, window.innerWidth - tw - pad));
+      if (top < pad) {
+        top = rect.bottom + gap;
+      }
+      tip.style.top = top + "px";
+      tip.style.left = left + "px";
+      tip.classList.add("is-visible");
+    });
+  });
+}
+
+function findWonmoreClubForSchedule() {
+  var clubs =
+    typeof CLUB_PORTAL_CLUBS !== "undefined" && CLUB_PORTAL_CLUBS && CLUB_PORTAL_CLUBS.length
+      ? CLUB_PORTAL_CLUBS
+      : [];
+  for (var i = 0; i < clubs.length; i++) {
+    if (clubs[i].name && clubs[i].name.indexOf("원모어") !== -1) {
+      return clubs[i];
+    }
+  }
+  return null;
+}
+
+function clearClubScheduleSelection(root) {
+  if (!root) return;
+  root.querySelectorAll(".club-cal-day-btn").forEach(function (b) {
+    b.classList.remove("club-cal-cell--selected");
+    b.setAttribute("aria-pressed", "false");
+  });
+}
+
+function onClubScheduleDayClick(e) {
+  var btn = e.target.closest(".club-cal-day-btn");
+  if (!btn) return;
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  if (!root || !root.contains(btn)) return;
+
+  clearClubScheduleSelection(root);
+  btn.classList.add("club-cal-cell--selected");
+  btn.setAttribute("aria-pressed", "true");
+
+  if (btn.getAttribute("data-cal-has-event") === "true") {
+    showClubScheduleTooltip(btn);
+  } else {
+    hideClubScheduleTooltip();
+  }
+}
+
+function onClubScheduleDocumentClick(e) {
+  var tip = document.getElementById("clubScheduleTooltip");
+  if (!tip || tip.hasAttribute("hidden")) return;
+  if (tip.contains(e.target)) return;
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  if (root && root.contains(e.target)) return;
+  hideClubScheduleTooltip();
+}
+
+function onClubScheduleEscape(e) {
+  if (e.key !== "Escape") return;
+  hideClubScheduleTooltip();
+}
+
+function bindClubScheduleInteractions() {
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  if (!root || clubScheduleInteractionBound) return;
+  clubScheduleInteractionBound = true;
+  root.addEventListener("click", onClubScheduleDayClick);
+  document.addEventListener("click", onClubScheduleDocumentClick);
+  document.addEventListener("keydown", onClubScheduleEscape);
+
+  var detailBtn = document.getElementById("clubScheduleTooltipDetail");
+  if (detailBtn) {
+    detailBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var club = findWonmoreClubForSchedule();
+      hideClubScheduleTooltip();
+      if (club && typeof openClubModal === "function") {
+        openClubModal(club);
+      }
+    });
+  }
+}
+
 function renderClubScheduleCalendars() {
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (!root) return;
+
+  hideClubScheduleTooltip();
 
   var now = new Date();
   var first = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -914,6 +1043,8 @@ function renderClubScheduleCalendars() {
     clubScheduleRenderMonthHtml(first.getFullYear(), first.getMonth()) +
     clubScheduleRenderMonthHtml(second.getFullYear(), second.getMonth()) +
     "</div>";
+
+  bindClubScheduleInteractions();
 }
 
 function initClubScheduleCalendar() {
