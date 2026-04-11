@@ -584,7 +584,7 @@ function renderClubCards() {
       escapeHtmlAttr(club.name + " 상세 보기") +
       '">' +
       '<div class="h-full bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#00B5E2] hover:shadow-xl transition-all duration-300">' +
-      '<div class="relative h-40 sm:h-48 overflow-hidden">' +
+      '<div class="relative w-full aspect-[5/4] overflow-hidden">' +
       '<img src="' +
       escapeHtmlAttr(club.image) +
       '" alt="' +
