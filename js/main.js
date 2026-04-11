@@ -821,6 +821,105 @@ function renderClubCards() {
   });
 }
 
+/** 원모어 정기모임: 매주 화·목 (0=일 … 6=토) */
+var CLUB_SCHEDULE_WONMORE_WEEKDAYS = [2, 4];
+var CLUB_SCHEDULE_WONMORE_LABEL = "💪 원모어 정기모임";
+
+function clubScheduleMonthLabelKo(year, monthIndex) {
+  return new Date(year, monthIndex, 1).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+  });
+}
+
+function clubScheduleWonmoreOnDay(year, monthIndex, day) {
+  var dow = new Date(year, monthIndex, day).getDay();
+  return CLUB_SCHEDULE_WONMORE_WEEKDAYS.indexOf(dow) !== -1;
+}
+
+function clubScheduleRenderMonthHtml(year, monthIndex) {
+  var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+  var firstDow = new Date(year, monthIndex, 1).getDay();
+  var monthLabel = clubScheduleMonthLabelKo(year, monthIndex);
+  var pad = '<div class="club-cal-cell club-cal-cell--pad" aria-hidden="true"></div>';
+  var cells = [];
+  var d;
+  var i;
+
+  for (i = 0; i < firstDow; i++) {
+    cells.push(pad);
+  }
+  for (d = 1; d <= daysInMonth; d++) {
+    var has = clubScheduleWonmoreOnDay(year, monthIndex, d);
+    var inner = "";
+    if (has) {
+      inner =
+        '<div class="club-cal-event">' +
+        '<span class="club-cal-dot" aria-hidden="true"></span>' +
+        '<span class="club-cal-event-text">' +
+        CLUB_SCHEDULE_WONMORE_LABEL +
+        "</span></div>";
+    }
+    cells.push(
+      '<div class="club-cal-cell' +
+        (has ? " club-cal-cell--event" : "") +
+        '">' +
+        '<span class="club-cal-day-num">' +
+        d +
+        "</span>" +
+        inner +
+        "</div>"
+    );
+  }
+  var used = firstDow + daysInMonth;
+  var trailing = (7 - (used % 7)) % 7;
+  for (i = 0; i < trailing; i++) {
+    cells.push(pad);
+  }
+
+  var weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+  var wdRow = weekdays
+    .map(function (w) {
+      return '<div class="club-cal-weekday">' + w + "</div>";
+    })
+    .join("");
+
+  return (
+    '<article class="club-calendar-card">' +
+    '<h3 class="club-cal-month-title">' +
+    monthLabel +
+    "</h3>" +
+    '<div class="club-cal-weekdays" aria-hidden="true">' +
+    wdRow +
+    "</div>" +
+    '<div class="club-cal-grid" role="grid" aria-label="' +
+    monthLabel +
+    " 동호회 일정" +
+    '">' +
+    cells.join("") +
+    "</div></article>"
+  );
+}
+
+function renderClubScheduleCalendars() {
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  if (!root) return;
+
+  var now = new Date();
+  var first = new Date(now.getFullYear(), now.getMonth(), 1);
+  var second = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+  root.innerHTML =
+    '<div class="club-schedule-calendars-grid">' +
+    clubScheduleRenderMonthHtml(first.getFullYear(), first.getMonth()) +
+    clubScheduleRenderMonthHtml(second.getFullYear(), second.getMonth()) +
+    "</div>";
+}
+
+function initClubScheduleCalendar() {
+  renderClubScheduleCalendars();
+}
+
 function initClubPortal() {
   renderClubCards();
 
@@ -913,6 +1012,7 @@ function initSiteTabs() {
 document.addEventListener("DOMContentLoaded", function () {
   initSiteTabs();
   initClubPortal();
+  initClubScheduleCalendar();
 
   var el = document.getElementById("testimonialScroll");
   var prev = document.querySelector(".testimonial-nav-prev");
