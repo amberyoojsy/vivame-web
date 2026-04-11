@@ -200,6 +200,7 @@ p,
     0 6px 16px rgba(15, 23, 42, 0.06);
   word-break: keep-all;
   overflow-wrap: break-word;
+  overflow: visible;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -259,6 +260,12 @@ p,
   max-width: 28rem;
   margin: 0 auto;
   min-height: 0;
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+}
+
+.club-guide-card:hover .club-guide-card-inner {
+  transform: scale(1.055);
 }
 
 .club-guide-card--join .club-guide-card-inner {
@@ -435,11 +442,6 @@ p,
   font-size: 1rem;
   display: inline-block;
   transform-origin: center;
-  transition: transform 0.3s ease;
-}
-
-.club-guide-card:hover .highlight-text {
-  transform: scale(1.1);
 }
 
 @media (min-width: 640px) {
@@ -537,12 +539,6 @@ p,
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.35rem;
-  transform-origin: center;
-  transition: transform 0.3s ease;
-}
-
-.club-guide-card:hover dl.club-guide-dl dt {
-  transform: scale(1.08);
 }
 
 .club-guide-card dl.club-guide-dl dd {
@@ -649,15 +645,18 @@ p,
     transform: none;
   }
 
+  .club-guide-card-inner {
+    transition: none;
+  }
+
+  .club-guide-card:hover .club-guide-card-inner {
+    transform: none;
+  }
+
   .club-guide-card .highlight-text,
   .club-guide-card dl.club-guide-dl dt,
   .club-guide-app-btn {
     transition: none;
-  }
-
-  .club-guide-card:hover .highlight-text,
-  .club-guide-card:hover dl.club-guide-dl dt {
-    transform: none;
   }
 
   .club-guide-app-btn:hover {
