@@ -272,6 +272,59 @@ p,
   }
 }
 
+/* 동호회 리스트 상단 타이틀 — 여백·화면 중앙 정렬·브랜드 언더라인 */
+.clubs-list-section-heading {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: min(52vh, 560px);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 639px) {
+  .clubs-list-section-heading {
+    padding-top: 72px;
+    padding-bottom: 60px;
+    min-height: min(44vh, 420px);
+  }
+}
+
+.clubs-list-section-title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-size: clamp(1.875rem, 5.2vw, 3.85rem);
+}
+
+@media (min-width: 1024px) {
+  .clubs-list-section-title {
+    font-size: clamp(2.5rem, 4.2vw, 4rem);
+  }
+}
+
+.clubs-list-section-accent {
+  display: block;
+  width: 4.5rem;
+  height: 4px;
+  margin-top: 1.35rem;
+  background-color: #00b0f0;
+  border-radius: 9999px;
+  box-shadow: 0 2px 12px rgba(0, 176, 240, 0.35);
+}
+
 /* 애니메이션 */
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
