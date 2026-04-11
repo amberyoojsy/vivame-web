@@ -34,6 +34,7 @@ function scrollToSection(id) {
  */
 
 var CLUB_PORTAL_CLUBS = [
+  {
     name: "그립(Grip) (운동/퍼포먼스)",
     tagline: "압도적인 퍼포먼스, 짧고 굵게 완성하는 전신 운동",
     summary:
@@ -107,7 +108,6 @@ var CLUB_PORTAL_CLUBS = [
     image: "./assets/club-visang-turn.png",
     badge: "운동/활동",
   },
-  {
   {
     name: "모종의 시작 (도시농부/가드닝)",
     tagline: "회사 옥상에서 펼쳐지는 초록빛 힐링, 도시 농부의 삶",
@@ -294,6 +294,7 @@ var CLUB_PORTAL_CLUBS = [
     image: "./assets/club-golf-beginners.png",
     badge: "골프/친목",
   },
+  {
     name: "온니 플라워 (플라워/힐링)",
     tagline: "꽃과 함께 피어나는 일상의 힐링, 한 달에 한 번 나에게 주는 선물",
     summary:
@@ -358,7 +359,6 @@ var CLUB_PORTAL_CLUBS = [
     image: "./assets/club-avocado.png",
     badge: "맛집 & 게임",
   },
-  {
 ];
 
 function escapeHtmlText(s) {
