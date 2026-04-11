@@ -347,7 +347,7 @@ var CLUB_PORTAL_CLUBS = [
     name: "온니 플라워",
     tagline: "꽃과 함께 피어나는 일상의 힐링, 한 달에 한 번 나에게 주는 선물",
     summary:
-      "월 참여도 90% 이상을 자랑하는 비상의 대표 힐링 모임! 직접 만든 꽃 작품으로 업무 스트레스는 해소하고, 사내 분위기까지 화사하게 업그레이드합니다.",
+      "월 참여도 90% 이상을 자랑하는 비상의 대표 힐링\u00A0모임! 직접 만든 꽃 작품으로 업무 스트레스는 해소하고, 사내 분위기까지 화사하게 업그레이드합니다.",
     detail: `"플라워 자체가 분위기!" '온니 플라워'는 꽃을 사랑하는 마음으로 모여 월 1회 정기적인 활동을 이어가고 있습니다.
 
 동호회 회원들의 열띤 참여(참여도 90% 이상)로 만들어진 아름다운 작품들은 사내 분위기를 밝히는 에너지가 됩니다.
@@ -652,12 +652,12 @@ function renderClubCards() {
       escapeHtmlAttr(club.name + " 상세 보기") +
       '">' +
       '<div class="h-full bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#00B5E2] hover:shadow-xl transition-all duration-300">' +
-      '<div class="relative w-full aspect-[5/4] overflow-hidden">' +
+      '<div class="relative w-full aspect-[5/4] overflow-hidden bg-gray-100">' +
       '<img src="' +
       escapeHtmlAttr(club.image) +
       '" alt="' +
       escapeHtmlAttr(club.name) +
-      '" class="club-card-thumb w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" loading="lazy" />' +
+      '" class="club-card-thumb absolute inset-0 h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" />' +
       '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>' +
       '<div class="absolute bottom-4 left-4">' +
       '<span class="px-3 py-1 bg-[#00B5E2]/90 text-white text-xs font-medium rounded-full">' +
@@ -668,10 +668,10 @@ function renderClubCards() {
       '<h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 text-content">' +
       escapeHtmlText(club.name) +
       "</h3>" +
-      '<p class="text-sm text-[#00B5E2] font-medium mb-3 text-pretty break-keep text-content">' +
+      '<p class="club-card-tagline text-sm text-[#00B5E2] font-medium mb-3 text-content">' +
       escapeHtmlText(club.tagline) +
       "</p>" +
-      '<p class="text-gray-600 leading-relaxed text-sm text-pretty break-keep text-content">' +
+      '<p class="club-card-summary text-gray-600 leading-relaxed text-sm text-content">' +
       escapeHtmlText(club.summary) +
       "</p>" +
       "</div></div></button></div>"
