@@ -1298,8 +1298,10 @@ p,
   overflow-wrap: break-word;
 }
 
-/* 카드 요약 — 데이터의 줄바꿈(\n) 반영 */
-.club-card-summary {
+/* 카드 태그라인·요약 / 동호회 모달 태그라인 — 데이터의 줄바꿈(\n) 반영 */
+.club-card-tagline,
+.club-card-summary,
+#clubModalTagline {
   white-space: pre-line;
 }
 
