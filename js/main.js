@@ -38,7 +38,7 @@ var CLUB_PORTAL_CLUBS = [
     name: "그립",
     tagline: "인싸들의 운동, 락클라이밍. 운동 잘해 보이고 싶다면?",
     summary:
-      '"인싸들의 운동, 운동 잘해보이고 싶다면? 여기로!"\n짧은 시간에도 눈에 띄는 효과를 보장합니다.\n별도 장비 없이 열정만 가지고 오세요!',
+      '"인싸들의 운동, 운동 잘해보이고 싶다면? 여기로!" 짧은 시간에도 눈에 띄는 효과를 보장합니다. 별도 장비 없이 열정만 가지고 오세요!',
     detail: `압도적인 팔 힘과 퍼포먼스를
 빠르게 만들어드리는 '그립'입니다!
 
@@ -761,7 +761,7 @@ function renderClubCards() {
     var badge = club.badge || "동호회";
     return (
       '<div class="group hover:-translate-y-2 transition-all duration-300">' +
-      '<button type="button" class="club-portal-card block w-full h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B5E2] focus-visible:ring-offset-2 rounded-3xl" data-club-index="' +
+      '<button type="button" class="club-portal-card block w-full h-full text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B5E2] focus-visible:ring-offset-2 rounded-3xl" data-club-index="' +
       idx +
       '" aria-label="' +
       escapeHtmlAttr(club.name + " 상세 보기") +
