@@ -75,6 +75,203 @@ p,
   overflow-wrap: break-word;
 }
 
+/* 가입·신설 카드 — 중앙 정렬·여백·은은한 입체감 (비바미 톤 #00B5E2) */
+.clubs-howto-surface {
+  background: linear-gradient(
+    165deg,
+    rgba(248, 250, 252, 0.95) 0%,
+    rgba(240, 249, 255, 0.45) 45%,
+    rgba(248, 250, 252, 0.98) 100%
+  );
+  border-radius: 1.5rem;
+  padding: 1.25rem 1rem 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .clubs-howto-surface {
+    padding: 1.75rem 1.5rem 2.25rem;
+  }
+}
+
+.club-guide-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: 28rem;
+  padding: 1.75rem 1.25rem;
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card {
+    min-height: 500px;
+    padding: 2rem 1.75rem 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .club-guide-card {
+    padding: 2.5rem;
+  }
+}
+
+.club-guide-card h3 {
+  font-size: clamp(1.125rem, 2.8vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+
+.club-guide-card .club-guide-lead {
+  margin: 0 0 1.25rem;
+  color: #4b5563;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card .club-guide-lead {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.club-guide-card .highlight-text {
+  color: #00b5e2;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card .highlight-text {
+    font-size: 1.0625rem;
+  }
+}
+
+.club-guide-card ol.club-guide-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 26rem;
+  text-align: center;
+}
+
+.club-guide-card ol.club-guide-steps > li + li {
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card ol.club-guide-steps > li + li {
+    margin-top: 1.5rem;
+  }
+}
+
+.club-guide-card ol.club-guide-steps p {
+  margin: 0.4rem 0 0;
+  color: #374151;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card ol.club-guide-steps p {
+    font-size: 1rem;
+  }
+}
+
+.club-guide-card dl.club-guide-dl {
+  margin: 0;
+  width: 100%;
+  max-width: 26rem;
+  text-align: center;
+}
+
+.club-guide-card dl.club-guide-dl > div + div {
+  margin-top: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card dl.club-guide-dl > div + div {
+    margin-top: 1.35rem;
+  }
+}
+
+.club-guide-card dl.club-guide-dl dt {
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.35rem;
+}
+
+.club-guide-card dl.club-guide-dl dd {
+  margin: 0;
+  color: #374151;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .club-guide-card dl.club-guide-dl dd {
+    font-size: 1rem;
+  }
+}
+
+.club-guide-app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.15rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #00b5e2 0%, #0090c5 100%);
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(0, 181, 226, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  vertical-align: baseline;
+}
+
+.club-guide-app-btn:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 18px rgba(0, 181, 226, 0.45);
+}
+
+.club-guide-app-btn:focus-visible {
+  outline: 2px solid #00b5e2;
+  outline-offset: 3px;
+}
+
+.club-guide-key {
+  color: #00b5e2;
+  font-weight: 600;
+}
+
+.club-guide-a6050-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .club-guide-a6050-note {
+    font-size: 0.875rem;
+  }
+}
+
 /* 애니메이션 */
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
