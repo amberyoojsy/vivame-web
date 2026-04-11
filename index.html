@@ -19,37 +19,50 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-[68px] lg:h-[84px]">
-                <a href="./" class="flex items-center gap-3">
+            <div class="flex items-center justify-between h-[68px] lg:h-[84px] gap-2">
+                <a href="#" class="flex items-center gap-3 shrink-0" onclick="event.preventDefault(); setSiteTab('vivame');">
                     <img src="./assets/visang-logo.png" alt="비상교육" class="h-9 lg:h-12 w-auto" />
                 </a>
-                
-                <div class="hidden md:flex items-center gap-2 lg:gap-8">
-                    <button onclick="scrollToSection('requirements')" class="px-3 lg:px-4 py-2 text-base lg:text-lg text-gray-700 hover:text-[#00B5E2] transition-colors">
-                        모집 요강
-                    </button>
-                    <button onclick="scrollToSection('benefits')" class="px-3 lg:px-4 py-2 text-base lg:text-lg text-gray-700 hover:text-[#00B5E2] transition-colors">
-                        VIVAME 활동 혜택
-                    </button>
-                    <button onclick="scrollToSection('clubs')" class="px-3 lg:px-4 py-2 text-base lg:text-lg text-gray-700 hover:text-[#00B5E2] transition-colors">
-                        사내 동호회
-                    </button>
-                    <a href="./apply.html" class="px-4 lg:px-6 py-2.5 lg:py-3 bg-[#00B5E2] text-white rounded-full hover:shadow-lg hover:shadow-[#00B5E2]/30 transition-all duration-300 text-base lg:text-lg font-medium">
+
+                <div class="hidden md:flex items-center gap-3 lg:gap-5 flex-1 justify-end min-w-0">
+                    <div class="flex items-center gap-1 border-r border-gray-200 pr-4 mr-1 shrink-0" role="tablist" aria-label="사이트 주요 메뉴">
+                        <button type="button" class="site-tab site-tab--active px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame" id="tab-label-vivame">
+                            비바미
+                        </button>
+                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs" id="tab-label-clubs">
+                            사내 동호회
+                        </button>
+                    </div>
+                    <div id="vivameQuickNav" class="flex items-center gap-2 lg:gap-6 flex-wrap justify-end">
+                        <button type="button" onclick="scrollToSection('requirements')" class="px-2 lg:px-3 py-2 text-sm lg:text-lg text-gray-700 hover:text-[#00B5E2] transition-colors whitespace-nowrap">
+                            모집 요강
+                        </button>
+                        <button type="button" onclick="scrollToSection('benefits')" class="px-2 lg:px-3 py-2 text-sm lg:text-lg text-gray-700 hover:text-[#00B5E2] transition-colors whitespace-nowrap">
+                            VIVAME 활동 혜택
+                        </button>
+                    </div>
+                    <a href="./apply.html" class="px-4 lg:px-6 py-2.5 lg:py-3 bg-[#00B5E2] text-white rounded-full hover:shadow-lg hover:shadow-[#00B5E2]/30 transition-all duration-300 text-sm lg:text-lg font-medium whitespace-nowrap shrink-0">
                         지원하기
                     </a>
                 </div>
-                
-                <div class="md:hidden flex items-center gap-2 shrink-0">
-                    <button type="button" onclick="scrollToSection('clubs')" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#00B5E2] transition-colors whitespace-nowrap">
+
+                <div class="md:hidden flex items-center gap-1.5 shrink-0" role="tablist" aria-label="사이트 주요 메뉴">
+                    <button type="button" class="site-tab site-tab--active px-2 py-2 text-sm" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame">
+                        비바미
+                    </button>
+                    <button type="button" class="site-tab px-2 py-2 text-sm" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs">
                         동호회
                     </button>
-                    <a href="./apply.html" class="px-4 py-2.5 bg-[#00B5E2] text-white rounded-full text-base font-medium">
+                    <a href="./apply.html" class="ml-1 px-3 py-2 bg-[#00B5E2] text-white rounded-full text-sm font-medium whitespace-nowrap">
                         지원하기
                     </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Tab: 비바미 (기존 랜딩 전체) -->
+    <div id="tab-panel-vivame" class="site-tab-panel" role="tabpanel" aria-labelledby="tab-label-vivame" data-site-panel="vivame">
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-blue-50/20 to-[#F8F9FA] pt-20">
@@ -568,27 +581,6 @@
         </div>
     </section>
 
-    <!-- Club portal: 사내 동호회 -->
-    <section id="clubs" class="club-portal-section py-12 sm:py-16 lg:py-24 bg-white border-t border-gray-100 scroll-mt-[68px] lg:scroll-mt-[84px]" aria-labelledby="clubs-heading">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 lg:mb-16">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#00B5E2]/10 rounded-full border border-[#00B5E2]/20 mb-6">
-                    <span class="text-sm font-medium text-[#00B5E2]">조직문화 · 동호회</span>
-                </div>
-                <h2 id="clubs-heading" class="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
-                    함께라서 더 즐거운, 비상 동호회
-                </h2>
-                <p class="text-lg lg:text-xl text-gray-600">
-                    관심사가 비슷한 동료들과 만나 일과 삶의 균형을 채워보세요.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="clubCardsRoot">
-                <!-- 동호회 카드는 main.js에서 렌더링 -->
-            </div>
-        </div>
-    </section>
-
     <!-- Benefits Section -->
     <section id="benefits" class="py-12 sm:py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -847,6 +839,33 @@
             </div>
         </div>
     </section>
+
+    </div>
+    <!-- /tab-panel-vivame -->
+
+    <!-- Tab: 사내 동호회 -->
+    <div id="tab-panel-clubs" class="site-tab-panel hidden" role="tabpanel" aria-labelledby="tab-label-clubs" data-site-panel="clubs" hidden tabindex="-1">
+        <section class="club-portal-section pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 min-h-[calc(100vh-5rem)] bg-[#F8F9FA]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <div class="text-center">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#00B5E2]/10 rounded-full border border-[#00B5E2]/20 mb-6">
+                            <span class="text-sm font-medium text-[#00B5E2]">조직문화 · 동호회</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
+                            함께라서 더 즐거운, 비상 동호회
+                        </h1>
+                    </div>
+                    <p id="clubs-intro" class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        비상 동호회는 업무를 넘어 취미와 관심사를 나누는 구성원 자율 모임입니다. 운동·문화·취미 등 다양한 테마로 한데 모여 서로를 응원하고, 일상에 활력을 더하는 시간을 가집니다. 아래 3×3 목록에서 마음에 드는 동호회를 눌러 상세 안내를 확인하고, 리더에게 이메일 또는 Microsoft Teams로 가볍게 문의해 보세요.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="clubCardsRoot">
+                    <!-- 동호회 카드는 main.js에서 렌더링 -->
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Quiz Modal -->
     <div id="quizModal" class="quiz-modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
