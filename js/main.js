@@ -26,8 +26,8 @@ function scrollToSection(id) {
  *   tagline: string,
  *   summary: string,
  *   detail: string,
- *   leaderInfo: string,
- *   email: string,
+ *   leaderInfo: string, // 줄바꿈으로 "리더: ○○ Cell 이름" / "총무: …" (총무 없으면 리더 줄만)
+ *   email: string, // 리더 연락처(메일·팀즈 링크)
  *   image: string,
  *   badge?: string
  * }} ClubPortalItem
@@ -51,8 +51,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🧗 "운동 좀 한다"는 소리를 듣고 싶은, 멋진 퍼포먼스를 꿈꾸는 분
 
 * 🤝 동료들과 함께 한계를 극복하며 끈끈한 팀워크를 느끼고 싶은 분`,
-    leaderInfo: "리더/총무: 김현섭 / 고수안",
-    email: "vivame.clubs.05@visang.com",
+    leaderInfo: "리더: 글로벌사업2 Cell 김현섭\n총무: 글로벌사업2 Cell 고수안",
+    email: "hskim5@visang.com",
     image: "./assets/club-grip.png",
     badge: "운동/퍼포먼스",
   },
@@ -81,8 +81,8 @@ var CLUB_PORTAL_CLUBS = [
 * 📆 "이번 달엔 뭐 하지?" 고민 없이 계절 테마에 몸을 맡기고 싶은 분
 
 * 🦐 제철 음식(방어, 대하 등)에 진심인 미식가 CP님`,
-    leaderInfo: "리더/총무: 박해인 / 김현진",
-    email: "vivame.clubs.06@visang.com",
+    leaderInfo: "리더: 통합실용1 Cell 박해인\n총무: 통합실용2 Cell 김현진",
+    email: "parkhi@visang.com",
     image: "./assets/club-four-seasons.png",
     badge: "시즌 액티비티/친목",
   },
@@ -103,8 +103,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🕊️ 출석 부담 없이 자유로운 분위기 속에서 꾸준히 활동하고 싶은 분
 
 * 💪 동료들과 함께 건강한 활력을 찾고 싶은 모든 분`,
-    leaderInfo: "리더/총무: 박준영 / 김완섭",
-    email: "vivame.clubs.04@visang.com",
+    leaderInfo: "리더: 티칭사업2 Cell 박준영\n총무: IT개발 Cell 김완섭",
+    email: "parkjy12@visang.com",
     image: "./assets/club-visang-turn.png",
     badge: "운동/활동",
   },
@@ -121,8 +121,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🪴 식물을 죽이는 '마이너스의 손'에서 '초록 손'으로 거듭나고 싶은 분
 
 * 🥬 직접 키운 작물을 수확하는 정직한 성취감을 느끼고 싶은 분`,
-    leaderInfo: "리더/총무: 김새별 / 심형석",
-    email: "vivame.clubs.01@visang.com",
+    leaderInfo: "리더: DX개발4 Cell 김새별\n총무: DX개발4 Cell 심형석",
+    email: "kimsb4@visang.com",
     image: "./assets/club-mojong-yisijak.png",
     badge: "도시농부/가드닝",
   },
@@ -143,8 +143,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🌈 상상력을 자극하는 창의적인 휴식 시간을 선호하는 분
 
 * 🪐 시공간을 초월한 새로운 힐링 경험을 해보고 싶은 분`,
-    leaderInfo: "리더/총무: 안경영 / 최윤영",
-    email: "vivame.clubs.03@visang.com",
+    leaderInfo: "리더: 라키비움 Cell 안경영\n총무: 에듀테크플랫폼서비스기획 Cell 최윤영",
+    email: "ahnky1@visang.com",
     image: "./assets/club-picturebook-playground.png",
     badge: "힐링/독서",
   },
@@ -165,8 +165,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🏊‍♂️ 한두 번이 아니라 꾸준히 함께 활동하며 실력을 키울 분
 
 * ✨ 일상에 활력을 불어넣을 색다른 도전을 즐기시는 분`,
-    leaderInfo: "리더: 채정석",
-    email: "vivame.clubs.08@visang.com",
+    leaderInfo: "리더: BE플랫폼 Cell 채정석",
+    email: "chaejs@visang.com",
     image: "./assets/club-pongdang-dive.png",
     badge: "수영/다이빙",
   },
@@ -185,8 +185,8 @@ var CLUB_PORTAL_CLUBS = [
 * 📸 어디서든 트렌드를 발견하고 즐길 줄 아는 감각적인 분
 
 * 🤝 처음 만나도 금방 친해지는 활발하고 에너지 넘치는 분`,
-    leaderInfo: "리더/총무: 이한솔 / 김인주",
-    email: "vivame.clubs.07@visang.com",
+    leaderInfo: "리더: 에듀테크콘텐츠3 Cell 이한솔\n총무: 교재마케팅 Cell 김인주",
+    email: "leehs9@visang.com",
     image: "./assets/club-popketing.png",
     badge: "트렌드/팝업",
   },
@@ -205,8 +205,8 @@ var CLUB_PORTAL_CLUBS = [
 * 📷 기종에 상관없이 사진 찍는 즐거움을 함께 나누고 싶은 분
 
 * ✨ 평범한 일상을 특별한 작품으로 남기고 싶은 감성 CP님`,
-    leaderInfo: "리더/총무: 김도이 / 김도이",
-    email: "vivame.clubs.12@visang.com",
+    leaderInfo: "리더: 경영관리 Cell 김도이",
+    email: "kimdy3@visang.com",
     image: "./assets/club-focus-on.png",
     badge: "사진/출사",
   },
@@ -227,8 +227,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🍽️ 열심히 운동한 뒤, '분기별 고급 회식'으로 보상받고 싶은 분
 
 * 🤝 외부인 없는 쾌적한 공간에서 새로운 동료들과 친해지고 싶은 분`,
-    leaderInfo: "리더/총무: 홍현우 / 이소민",
-    email: "vivame.clubs.10@visang.com",
+    leaderInfo: "리더: 사회5 Cell 홍현우\n총무: 통합운영 Cell 이소민",
+    email: "honghu@visang.com",
     image: "./assets/club-one-more.png",
     badge: "운동/자기관리",
   },
@@ -249,8 +249,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🌱 동료들과 함께 건강한 독서 습관을 만들고 싶은 분
 
 * 🗨️ 읽은 책에 대해 자유롭게 이야기 나누는 문화를 선호하는 분`,
-    leaderInfo: "리더/총무: 김동남 / 신강희",
-    email: "vivame.clubs.11@visang.com",
+    leaderInfo: "리더: 콘텐츠마케팅 Core 김동남\n총무: 중고등영어교과서 Core 신강희",
+    email: "kimdn@visang.com",
     image: "./assets/club-bisang-dadok.png",
     badge: "독서/자기계발",
   },
@@ -271,8 +271,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🤝 조용하더라도 꾸준하게 활동하며 끈끈한 유대감을 쌓고 싶은 분
 
 * 🏟️ 혼자 가는 직관보다 함께 응원하는 함성의 힘을 믿는 분`,
-    leaderInfo: "리더/총무: 이병주 / 정시우",
-    email: "vivame.clubs.09@visang.com",
+    leaderInfo: "리더: 교과서정책 Cell 이병주\n총무: 통합실용4 Cell 정시우",
+    email: "leebj1@visang.com",
     image: "./assets/club-daramji.png",
     badge: "스포츠 직관",
   },
@@ -311,8 +311,8 @@ var CLUB_PORTAL_CLUBS = [
 * 💌 직접 만든 꽃 작품으로 가족이나 동료에게 감동을 전하고 싶은 분
 
 * 📈 높은 참여도 속에서 끈끈하고 화기애애한 분위기를 즐기고 싶은 분`,
-    leaderInfo: "리더/총무: 정미화 / 김유미",
-    email: "vivame.clubs.14@visang.com",
+    leaderInfo: "리더: T-러닝경영정보 Cell 정미화\n총무: 유아 Core Group 김유미",
+    email: "jungmh2@visang.com",
     image: "./assets/club-only-flower.png",
     badge: "플라워/힐링",
   },
@@ -332,8 +332,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🎓 볼링 고수에게 기초부터 노하우까지 제대로 배우고 싶은 입문자
 
 * 🤝 밝고 유쾌한 분위기 속에서 사내 네트워크를 넓히고 싶은 CP님`,
-    leaderInfo: "리더/총무: 정수진 / 오현식",
-    email: "vivame.clubs.13@visang.com",
+    leaderInfo: "리더: 법무 Cell 정수진\n총무: 에듀테크플랫폼개발 Cell 오현식",
+    email: "jungsj1@visang.com",
     image: "./assets/club-ttegureu.png",
     badge: "볼링/친목",
   },
@@ -354,8 +354,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🙌 즉흥적인 게임 모임을 즐기며 적극적으로 파티원을 모집할 용기가 있는 분
 
 * ✨ 극강의 P 성향을 가진 자유로운 영혼의 소유자`,
-    leaderInfo: "리더/총무: 백부경 / 허수인",
-    email: "vivame.clubs.02@visang.com",
+    leaderInfo: "리더: AX추진 Cell 백부경\n총무: AI서비스기획 Cell 허수인",
+    email: "baekbk@visang.com",
     image: "./assets/club-avocado.png",
     badge: "맛집 & 게임",
   },
@@ -461,7 +461,7 @@ function formatClubDetailAsHtml(detail) {
 }
 
 /**
- * 리더/총무 문구 — 라벨과 이름 분리(이름만 강조). 줄바꿈은 &lt;br /&gt;
+ * 리더/총무 문구 — 첫 ":" 기준 라벨(리더:/총무:)과 본문(소속·이름) 분리. 줄 단위로 &lt;p&gt;
  * @param {string} raw
  * @returns {string}
  */
