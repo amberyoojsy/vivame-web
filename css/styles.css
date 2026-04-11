@@ -61,15 +61,28 @@ p,
 }
 
 /* 사내 동호회 인트로 — About(비바미 소개)와 동일한 keep-all·여백 체계 */
-.clubs-intro-section h1,
 .clubs-intro-section .clubs-intro-copy,
 .clubs-intro-section .clubs-intro-body {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
-.clubs-intro-section h1 {
+/* 동호회 메인 히어로 타이틀(배경 위 가독성) */
+.clubs-hero-title {
+  word-break: keep-all;
+  overflow-wrap: break-word;
   line-height: 1.35;
+}
+
+.clubs-hero-title-line {
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.98),
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 2px 10px rgba(255, 255, 255, 0.75);
+}
+
+.clubs-hero .hero-slogan {
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.85));
 }
 
 /* 제목 아래 본문: 동일 글자 크기(text-base sm:text-lg는 HTML에서 적용) */
@@ -982,35 +995,47 @@ p,
   );
 }
 
-/* 사내 동호회 탭 — 비바미 히어로와 동일한 전면 배경(일러스트 + 그라데이션) */
+/* 사내 동호회 메인 히어로 — 배경은 .clubs-hero 내부에만 (본문·리스트는 단색 영역) */
+.clubs-hero__bg {
+  overflow: hidden;
+}
+
 .clubs-hero-bg-image {
   background-image: url("../assets/clubs-hero-bg.png");
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
-  opacity: 0.22;
+  opacity: 0.24;
 }
 
 .clubs-hero-bg-gradient {
   background:
     radial-gradient(
-      ellipse 78% 62% at 22% 38%,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.5) 42%,
-      rgba(248, 249, 250, 0.28) 68%,
+      ellipse 88% 72% at 28% 40%,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.55) 48%,
+      rgba(248, 249, 250, 0.2) 72%,
       transparent 100%
     ),
     radial-gradient(
-      ellipse 52% 48% at 88% 52%,
-      rgba(0, 176, 240, 0.08) 0%,
+      ellipse 58% 52% at 88% 50%,
+      rgba(0, 176, 240, 0.07) 0%,
       transparent 58%
     );
 }
 
+/* 가장자리 페이드 — 흰 배경과 자연스럽게 이어짐 */
+.clubs-hero-bg-vignette {
+  background:
+    linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0) 88%, #ffffff 100%),
+    linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 82%, rgba(255, 255, 255, 0.94) 100%);
+  pointer-events: none;
+}
+
 @media (max-width: 639px) {
   .clubs-hero-bg-image {
-    background-position: 70% 30%;
-    opacity: 0.18;
+    background-position: 72% 32%;
+    opacity: 0.2;
   }
 }
 
