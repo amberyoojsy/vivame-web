@@ -69,6 +69,12 @@ p,
   font-size: inherit;
 }
 
+/* 동호회 가입·신설 안내 — 인트로와 동일 keep-all */
+.clubs-howto {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* 애니메이션 */
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
