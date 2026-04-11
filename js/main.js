@@ -19,8 +19,7 @@ function scrollToSection(id) {
 }
 
 /**
- * 카드용 데이터 수신 후: 각 항목의 name, tagline, summary, detail, leaderInfo, email, badge 를 교체하세요.
- * 대표 이미지: ./assets/club-image-1.png ~ club-image-15.png (파일명만 유지하면 경로는 그대로입니다.)
+ * 동호회 데이터: `js/clubs-data.js`의 전역 `CLUB_PORTAL_CLUBS` (15개)
  *
  * @typedef {{
  *   name: string,
@@ -44,44 +43,6 @@ function escapeHtmlText(s) {
 function escapeHtmlAttr(s) {
   return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-
-/** 비바미 주요 활동 섹션과 유사한 배지 문구 순환 */
-var CLUB_BADGE_ROTATE = [
-  "사회공헌 활동",
-  "즐거운 일터 만들기",
-  "우리의 믿음 내재화",
-  "조직문화",
-  "취미 모임",
-];
-
-function buildClubPortalData() {
-  var placeholderDetail =
-    "[리더 원문 전체]\n\n" +
-    "리더·운영진이 보내주신 소개 글을 이 항목의 detail 필드에 말투·줄바꿈을 한 글자도 빼지 말고 그대로 붙여 넣어 주세요. (임시 안내 문구입니다.)";
-
-  var placeholderLeader =
-    "리더: (이름 / 소속)\n" + "총무: (이름 / 소속)\n" + "문의 가능 시간·채널 등을 여기에 적어 주세요.";
-
-  var list = [];
-  var i;
-  for (i = 1; i <= 15; i++) {
-    list.push({
-      name: "동호회 " + (i < 10 ? "0" : "") + i + " (명칭 수신 예정)",
-      tagline: "슬로건(한 줄) — 카드용 데이터의 tagline 으로 교체해 주세요.",
-      summary:
-        "리스트 카드에 들어갈 짧은 요약입니다. 비바미 주요 활동 카드의 회색 본문과 같은 역할이며, 카드용 데이터의 요약문으로 교체해 주세요.",
-      detail: placeholderDetail,
-      leaderInfo: placeholderLeader,
-      email: "vivame.clubs." + (i < 10 ? "0" + i : String(i)) + "@visang.com",
-      image: "./assets/club-image-" + i + ".png",
-      badge: CLUB_BADGE_ROTATE[(i - 1) % CLUB_BADGE_ROTATE.length],
-    });
-  }
-  return list;
-}
-
-/** @type {ClubPortalItem[]} */
-var CLUB_PORTAL_CLUBS = buildClubPortalData();
 
 function clubInitials(name) {
   var trimmed = name.replace(/\s+/g, " ").trim();
