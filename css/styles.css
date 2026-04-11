@@ -173,6 +173,11 @@ p,
     align-items: stretch;
     gap: 2rem;
   }
+
+  .clubs-howto-cards > .club-guide-card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 }
 
 .club-guide-card {
@@ -329,18 +334,18 @@ p,
 }
 
 .club-guide-card--join .club-guide-main-stack {
-  gap: 1.4rem;
+  gap: 1rem;
 }
 
 @media (min-width: 640px) {
   .club-guide-card--join .club-guide-main-stack {
-    gap: 1.55rem;
+    gap: 1.15rem;
   }
 }
 
 @media (min-width: 1024px) {
   .club-guide-card--join .club-guide-main-stack {
-    gap: 1.7rem;
+    gap: 1.25rem;
   }
 }
 
@@ -369,26 +374,39 @@ p,
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.07);
 }
 
-/* 합류 안내: 이미지를 카드 콘텐츠 폭에 맞춰 넓게 */
+/* 합류 안내: 썸네일 크기로 축소(두 카드 높이 균형) */
 .club-guide-card--join .club-guide-hero {
-  max-width: none;
+  max-width: 12rem;
   width: 100%;
-  border-radius: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+@media (min-width: 640px) {
+  .club-guide-card--join .club-guide-hero {
+    max-width: 13rem;
+  }
 }
 
 .club-guide-hero-img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
+  max-height: 5.5rem;
   object-fit: cover;
   object-position: center;
 }
 
-@media (min-width: 1024px) {
+.club-guide-card--join .club-guide-hero-img {
+  max-height: 5.5rem;
+}
+
+@media (min-width: 640px) {
   .club-guide-card--join .club-guide-hero-img {
-    aspect-ratio: 16 / 10;
-    min-height: 11rem;
+    max-height: 6rem;
   }
 }
 
@@ -428,20 +446,20 @@ p,
   }
 }
 
-/* 합류 카드 Step: 간격·줄간격 확대로 세로 공백 분산 */
+/* 합류 카드 Step 간격 */
 .club-guide-card--join ol.club-guide-steps > li + li {
-  margin-top: 1.65rem;
+  margin-top: 1.45rem;
 }
 
 @media (min-width: 640px) {
   .club-guide-card--join ol.club-guide-steps > li + li {
-    margin-top: 1.85rem;
+    margin-top: 1.55rem;
   }
 }
 
 @media (min-width: 1024px) {
   .club-guide-card--join ol.club-guide-steps > li + li {
-    margin-top: 2rem;
+    margin-top: 1.6rem;
   }
 }
 
@@ -459,17 +477,17 @@ p,
 }
 
 .club-guide-card--join ol.club-guide-steps p {
-  line-height: 1.78;
+  line-height: 1.72;
 }
 
 @media (min-width: 640px) {
   .club-guide-card--join ol.club-guide-steps p {
-    line-height: 1.82;
+    line-height: 1.75;
   }
 }
 
 .club-guide-card--join .highlight-text {
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.45rem;
 }
 
 .club-guide-card dl.club-guide-dl {
