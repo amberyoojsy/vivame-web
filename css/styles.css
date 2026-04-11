@@ -1072,11 +1072,19 @@ p,
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
+.club-cal-events-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 0.12rem;
+  min-width: 0;
+}
+
 .club-cal-event {
   display: flex;
   align-items: flex-start;
   gap: 0.25rem;
-  margin-top: 0.15rem;
+  margin-top: 0;
   min-width: 0;
   transition: color 0.2s ease;
 }
@@ -1150,20 +1158,11 @@ p,
   pointer-events: none;
 }
 
-.club-schedule-tooltip__text {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: -0.02em;
-  color: #1f2937;
-  word-break: keep-all;
-}
-
-.club-schedule-tooltip__actions {
-  margin-top: 0.6rem;
-  padding-top: 0.55rem;
-  border-top: 1px solid rgba(0, 176, 240, 0.15);
+.club-schedule-tooltip__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
 }
 
 .club-schedule-tooltip__btn {
