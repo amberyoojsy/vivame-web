@@ -395,6 +395,32 @@ function buildMailtoUrl(email) {
 /** 동호회 상세 본문에 삽입되는 ‘찰떡’ 헤드라인(스타일 분리용) */
 var CLUB_MODAL_FIT_HEADLINE = "✨ 이런 CP님, 우리와 찰떡이에요!";
 
+/**
+ * 찰떡궁합 구간 — 줄마다 <p>로 감싸 가로 중앙 정렬이 흐트러지지 않게 함
+ * @param {string} raw
+ * @returns {string}
+ */
+function formatFitBulletLinesHtml(raw) {
+  var lines = String(raw)
+    .split(/\r?\n/)
+    .map(function (line) {
+      return line.trim();
+    })
+    .filter(function (line) {
+      return line.length > 0;
+    });
+  if (!lines.length) return "";
+  return (
+    '<div class="club-modal-fit-list">' +
+    lines
+      .map(function (line) {
+        return '<p class="club-modal-fit-item">' + escapeClubModalHtml(line) + "</p>";
+      })
+      .join("") +
+    "</div>"
+  );
+}
+
 function escapeClubModalHtml(text) {
   return String(text)
     .replace(/&/g, "&amp;")
@@ -420,6 +446,7 @@ function formatClubDetailAsHtml(detail) {
   }
   var before = d.slice(0, idx);
   var after = d.slice(idx + head.length);
+  var fitBodyHtml = formatFitBulletLinesHtml(after);
   return (
     '<div class="club-modal-detail-text">' +
     escapeClubModalHtml(before).replace(/\n/g, "<br />") +
@@ -427,9 +454,7 @@ function formatClubDetailAsHtml(detail) {
     '<h4 class="club-modal-section-title club-modal-section-title--fit">' +
     escapeClubModalHtml(head) +
     "</h4>" +
-    '<div class="club-modal-detail-text club-modal-detail-text--after">' +
-    escapeClubModalHtml(after).replace(/\n/g, "<br />") +
-    "</div>"
+    (fitBodyHtml ? '<div class="club-modal-fit-wrap">' + fitBodyHtml + "</div>" : "")
   );
 }
 
