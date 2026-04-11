@@ -1263,14 +1263,6 @@ p,
   }
 }
 
-/* 비바미 활동 카드 본문 — 줄바꿈(\n) 반영·좌측 정렬(동호회 카드 요약과 동일 리듬) */
-.activity-card-description {
-  text-align: left;
-  white-space: pre-line;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-}
-
 /* 동호회 카드 썸네일: padding-bottom 비율 박스(5:4) — 모바일 Safari에서 aspect-ratio+absolute 조합 시 하단 회색 누락 완화 */
 .club-card-thumb-wrap {
   position: relative;
@@ -1297,20 +1289,73 @@ p,
   backface-visibility: hidden;
 }
 
-/* 카드 제목·태그라인·요약 — 좌측 정렬·한글 단어 중간 끊김 완화 */
+/*
+ * 동호회·비바미 활동 카드 본문 — 반응형 가독성
+ * (keep-all + break-word, 중앙·폭 90%, 모바일 줄간 1.72)
+ */
 .club-portal-card h3,
 .club-card-tagline,
-.club-card-summary {
-  text-align: left;
+.club-card-summary,
+.activity-card-description {
+  text-align: center;
+  white-space: normal;
+  width: 90%;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
-/* 카드 태그라인·요약 / 동호회 모달 태그라인 — 데이터의 줄바꿈(\n) 반영 */
-.club-card-tagline,
-.club-card-summary,
+.activities-section .group .p-4.sm\:p-6,
+.activities-section .group .p-4 {
+  text-align: center;
+}
+
+@media (max-width: 639px) {
+  .club-portal-card h3,
+  .club-card-tagline,
+  .club-card-summary,
+  .activity-card-description {
+    line-height: 1.72;
+  }
+}
+
+@media (min-width: 640px) {
+  .club-portal-card h3,
+  .club-card-tagline,
+  .club-card-summary,
+  .activity-card-description {
+    line-height: 1.68;
+  }
+}
+
+@supports (text-wrap: pretty) {
+  .club-portal-card h3,
+  .club-card-tagline,
+  .club-card-summary,
+  .activity-card-description,
+  .club-modal-detail-text,
+  .club-modal-fit-item {
+    text-wrap: pretty;
+  }
+}
+
 #clubModalTagline {
-  white-space: pre-line;
+  text-align: center;
+  white-space: normal;
+  width: 90%;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 639px) {
+  #clubModalTagline {
+    line-height: 1.72;
+  }
 }
 
 /* ========================================
@@ -1498,29 +1543,43 @@ p,
 
 /* 소개글·찰떡 리스트 본문 — 동일 글자 크기·굵기(리더의 한마디 ↔ 찰떡 궁합) */
 .club-modal-detail-text {
+  box-sizing: border-box;
   margin: 0 auto 1rem;
-  max-width: 22rem;
+  width: 90%;
+  max-width: min(28rem, 90vw);
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.65;
+  line-height: 1.68;
   letter-spacing: -0.01em;
   color: #1f2937;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
+@media (max-width: 639px) {
+  .club-modal-detail-text {
+    line-height: 1.72;
+  }
+}
+
 @media (min-width: 640px) {
   .club-modal-detail-text {
-    max-width: 36rem;
+    max-width: min(36rem, 90%);
     font-size: 1rem;
-    line-height: 1.65;
+    line-height: 1.68;
     margin-bottom: var(--club-modal-gap);
   }
 }
 
 .club-modal-section-body--detail .club-modal-detail-text:last-child {
   margin-bottom: 0;
+}
+
+/* 리더 본문 내 문구 강조(볼드) */
+.club-modal-detail-text .club-modal-em-lead {
+  font-weight: 700;
+  color: #0f172a;
 }
 
 /* 찰떡궁합 리스트 — 본문·리더 섹션과 동일 수직 리듬, 항목 텍스트 중앙 정렬 */
@@ -1542,7 +1601,7 @@ p,
 .club-modal-fit-list {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 0.35rem;
   margin: 0;
   padding: 0;
@@ -1550,23 +1609,52 @@ p,
 }
 
 .club-modal-fit-item {
-  margin: 0;
+  box-sizing: border-box;
+  margin: 0 auto;
   padding: 0;
-  width: 100%;
+  width: 90%;
+  max-width: min(28rem, 90vw);
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.65;
+  line-height: 1.68;
   letter-spacing: -0.01em;
   color: #1f2937;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
+@media (max-width: 639px) {
+  .club-modal-fit-item {
+    line-height: 1.72;
+  }
+}
+
+@media (min-width: 640px) {
+  .club-modal-fit-item {
+    max-width: min(36rem, 90%);
+  }
+}
+
 .club-modal-leader-wrap {
+  box-sizing: border-box;
+  width: 90%;
+  max-width: min(28rem, 90vw);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.75;
   color: #374151;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .club-modal-leader-wrap {
+    max-width: min(36rem, 90%);
+    line-height: 1.7;
+  }
 }
 
 .club-modal-leader-line {
