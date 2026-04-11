@@ -244,6 +244,23 @@ p,
   vertical-align: baseline;
 }
 
+.club-guide-app-btn--external {
+  margin: 0;
+  padding: 0.65rem 1.35rem;
+  max-width: 100%;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-align: center;
+  word-break: keep-all;
+}
+
+@media (min-width: 640px) {
+  .club-guide-app-btn--external {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+}
+
 .club-guide-app-btn:hover {
   filter: brightness(1.05);
   box-shadow: 0 6px 18px rgba(0, 181, 226, 0.45);
@@ -254,22 +271,52 @@ p,
   outline-offset: 3px;
 }
 
-.club-guide-key {
-  color: #00b5e2;
-  font-weight: 600;
+.club-guide-apply-block {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-.club-guide-a6050-note {
-  margin: 0.75rem 0 0;
-  font-size: 0.8125rem;
-  color: #6b7280;
+.club-guide-apply-intro {
+  margin: 0 0 1rem;
+  color: #374151;
   line-height: 1.65;
 }
 
+.club-guide-apply-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0.75rem;
+}
+
+.club-guide-path-hint {
+  margin: 0 0 1rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
 @media (min-width: 640px) {
-  .club-guide-a6050-note {
+  .club-guide-path-hint {
+    font-size: 0.8125rem;
+  }
+}
+
+.club-guide-reg-note {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: #6b7280;
+}
+
+@media (min-width: 640px) {
+  .club-guide-reg-note {
     font-size: 0.875rem;
   }
+}
+
+.club-guide-key {
+  color: #00b5e2;
+  font-weight: 600;
 }
 
 /* 동호회 리스트 상단 타이틀 — 여백·화면 중앙 정렬·브랜드 언더라인 */
