@@ -4,6 +4,15 @@
 
 let quizAnswers = {};
 
+/** 모집 마감 후 공통 (네 2개 이상) */
+const QUIZ_RESULT_CLOSED = {
+  desc: "아쉽게 이번 기수는 마감되었지만, 내년에 CP님과 함께 그려갈 비상의 문화가 벌써 기대됩니다. 비바미에 많은 관심 부탁드려요.",
+  ctaHtml:
+    '<span class="quiz-result-cta-inner"><svg class="quiz-result-cta-bird" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M6 15v3"/><path d="M14 18v3"/></svg><span>내년을 기약해요!</span></span>',
+  btnText: "비바미에 대해 더 알아보기",
+  btnHref: "#about-vivame",
+};
+
 const QUIZ_RESULTS = {
   0: {
     title: "아직은 잠시 고민 중이시네요 🙂",
@@ -16,31 +25,22 @@ const QUIZ_RESULTS = {
   1: {
     title: "비바미의 씨앗을 발견했어요 🌿",
     desc: "아직은 조용하지만, 마음 어딘가에 변화의 씨앗이 있네요.<br>비바미는 거창한 사람이 아니라, 작은 관심에서 시작됩니다.",
-    cta: "👉 한 번 더 읽어보고… 슬쩍 지원해볼까요?",
+    cta: "👉 한 번 더 읽어보며 천천히 알아가도 좋아요.",
     btnText: "한 번 더 알아보기",
     btnHref: null,
     scrollToSection: "requirements",
   },
   2: {
     title: "이미 비바미 기질이 보여요 🙂",
-    desc: "회사에 대한 관심과 작은 변화에 대한 마음,<br>그거면 충분합니다. : )",
-    cta: "👉 이제는 생각보다 행동이 더 쉬울지도 몰라요.",
-    btnText: "지원해볼게요",
-    btnHref: "./apply.html",
+    ...QUIZ_RESULT_CLOSED,
   },
   3: {
     title: "거의 비바미입니다 💙",
-    desc: "사람, 변화, 그리고 재미.<br>이미 다 갖추셨습니다!",
-    cta: "👉 지원 버튼만 남았네요!",
-    btnText: "지원하기",
-    btnHref: "./apply.html",
+    ...QUIZ_RESULT_CLOSED,
   },
   4: {
     title: "시피님… 비바미 맞죠? 😎",
-    desc: "이 정도면 합류만 남았습니다.<br>함께 움직이면, 문화는 더 재밌어지지 않을까요?",
-    cta: "👉 지금 지원하면 딱이에요.",
-    btnText: "지금 지원하기",
-    btnHref: "./apply.html",
+    ...QUIZ_RESULT_CLOSED,
   },
 };
 
@@ -105,6 +105,21 @@ function closeAndScrollToSection(sectionId) {
   }, 150);
 }
 
+/** 모집 마감 안내 후 비바미 소개(About) 구역으로 이동 — 동호회 탭이어도 비바미 탭으로 전환 */
+function closeQuizGoVivameAbout() {
+  closeQuizModal();
+  if (typeof setSiteTab === "function") {
+    setSiteTab("vivame", { skipHash: true });
+  }
+  setTimeout(() => {
+    const el = document.getElementById("about-vivame");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", "#vivame");
+    }
+  }, 150);
+}
+
 function submitQuiz() {
   const score = Object.values(quizAnswers).filter(Boolean).length;
   const result = QUIZ_RESULTS[score] ?? QUIZ_RESULTS[0];
@@ -116,14 +131,25 @@ function submitQuiz() {
   if (resultDiv) {
     resultDiv.classList.remove("hidden");
     const isScrollAction = result.scrollToSection && !result.btnHref;
-    const btnMarkup = isScrollAction
-      ? `<button type="button" onclick="closeAndScrollToSection('${result.scrollToSection}')" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">${result.btnText}</button>`
-      : `<a href="${result.btnHref}" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">${result.btnText}</a>`;
+    const isVivameAboutCTA = result.btnHref === "#about-vivame";
+    const ctaLine = result.ctaHtml != null ? result.ctaHtml : result.cta;
+    const btnClassScroll =
+      "inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center";
+    const btnClassPrimary =
+      "inline-block mt-6 px-6 py-3.5 bg-[#00B0F0] text-white rounded-2xl font-bold text-base hover:bg-[#0095c7] transition-colors duration-200 w-full text-center";
+    let btnMarkup;
+    if (isScrollAction) {
+      btnMarkup = `<button type="button" onclick="closeAndScrollToSection('${result.scrollToSection}')" class="${btnClassScroll}">${result.btnText}</button>`;
+    } else if (isVivameAboutCTA) {
+      btnMarkup = `<button type="button" onclick="closeQuizGoVivameAbout()" class="${btnClassPrimary}">${result.btnText}</button>`;
+    } else {
+      btnMarkup = `<a href="${result.btnHref}" class="${btnClassPrimary}">${result.btnText}</a>`;
+    }
     resultDiv.innerHTML = `
       <div class="quiz-result-inner text-left py-2">
         <h4 class="quiz-result-title">${result.title}</h4>
         <p class="quiz-result-desc">${result.desc}</p>
-        <p class="quiz-result-cta">${result.cta}</p>
+        <p class="quiz-result-cta">${ctaLine}</p>
         ${btnMarkup}
       </div>
     `;

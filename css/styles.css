@@ -1447,6 +1447,11 @@ p,
 }
 
 /* Quiz 결과 섹션 스타일 */
+.quiz-result-inner {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 .quiz-result-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -1459,13 +1464,27 @@ p,
   line-height: 1.65;
   color: #4b5563;
   margin-bottom: 1rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .quiz-result-cta {
   font-size: 0.875rem;
-  color: #00B5E2;
+  color: #00b0f0;
   font-weight: 500;
   margin-top: 0.5rem;
+}
+
+.quiz-result-cta-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.375rem;
+}
+
+.quiz-result-cta-bird {
+  flex-shrink: 0;
+  color: #00b0f0;
 }
 
 
