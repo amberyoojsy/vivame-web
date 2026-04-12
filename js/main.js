@@ -846,6 +846,7 @@ var clubScheduleViewYear = /** @type {number | null} */ (null);
 var clubScheduleViewMonth = /** @type {number | null} */ (null);
 
 var clubScheduleInteractionBound = false;
+var clubScheduleTooltipHideTimer = /** @type {ReturnType<typeof setTimeout> | null} */ (null);
 
 function clubScheduleMonthLabelKo(year, monthIndex) {
   return new Date(year, monthIndex, 1).toLocaleDateString("ko-KR", {
@@ -1024,13 +1025,51 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
   );
 }
 
-function hideClubScheduleTooltip() {
+function clubScheduleIsTooltipOpen() {
   var tip = document.getElementById("clubScheduleTooltip");
+  return !!(tip && !tip.hasAttribute("hidden") && tip.classList.contains("is-visible"));
+}
+
+/** 리렌더 등 즉시 제거 (애니메이션 없음) */
+function hideClubScheduleTooltipImmediate() {
+  var tip = document.getElementById("clubScheduleTooltip");
+  if (clubScheduleTooltipHideTimer) {
+    clearTimeout(clubScheduleTooltipHideTimer);
+    clubScheduleTooltipHideTimer = null;
+  }
   if (!tip) return;
-  tip.classList.remove("is-visible");
+  tip.classList.remove("is-visible", "is-hiding");
   tip.setAttribute("hidden", "");
   tip.style.top = "";
   tip.style.left = "";
+}
+
+/** 페이드·슬라이드 아웃 후 숨김 (선택 해제는 호출 전에 별도 처리) */
+function hideClubScheduleTooltipAnimated() {
+  var tip = document.getElementById("clubScheduleTooltip");
+  if (!tip || tip.hasAttribute("hidden") || !tip.classList.contains("is-visible")) {
+    hideClubScheduleTooltipImmediate();
+    return;
+  }
+  tip.classList.remove("is-visible");
+  tip.classList.add("is-hiding");
+  if (clubScheduleTooltipHideTimer) {
+    clearTimeout(clubScheduleTooltipHideTimer);
+  }
+  clubScheduleTooltipHideTimer = setTimeout(function () {
+    clubScheduleTooltipHideTimer = null;
+    tip.setAttribute("hidden", "");
+    tip.classList.remove("is-hiding");
+    tip.style.top = "";
+    tip.style.left = "";
+  }, 200);
+}
+
+/** 툴팁 닫기 + 날짜 선택 해제 */
+function clubScheduleDismissPopup() {
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  clearClubScheduleSelection(root);
+  hideClubScheduleTooltipAnimated();
 }
 
 function showClubScheduleTooltip(anchorBtn) {
@@ -1049,6 +1088,11 @@ function showClubScheduleTooltip(anchorBtn) {
   }
   if (!names.length) return;
 
+  if (clubScheduleTooltipHideTimer) {
+    clearTimeout(clubScheduleTooltipHideTimer);
+    clubScheduleTooltipHideTimer = null;
+  }
+
   tipBody.innerHTML = names
     .map(function (nameMatch) {
       return (
@@ -1061,6 +1105,7 @@ function showClubScheduleTooltip(anchorBtn) {
     })
     .join("");
 
+  tip.classList.remove("is-hiding");
   tip.classList.remove("is-visible");
   tip.removeAttribute("hidden");
 
@@ -1111,6 +1156,13 @@ function onClubScheduleDayClick(e) {
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (!root || !root.contains(btn)) return;
 
+  /** 같은 날짜 재클릭 → 선택·툴팁 닫기 (토글) */
+  if (btn.classList.contains("club-cal-cell--selected")) {
+    clearClubScheduleSelection(root);
+    hideClubScheduleTooltipAnimated();
+    return;
+  }
+
   clearClubScheduleSelection(root);
   btn.classList.add("club-cal-cell--selected");
   btn.setAttribute("aria-pressed", "true");
@@ -1118,11 +1170,14 @@ function onClubScheduleDayClick(e) {
   if (btn.getAttribute("data-cal-has-event") === "true") {
     showClubScheduleTooltip(btn);
   } else {
-    hideClubScheduleTooltip();
+    hideClubScheduleTooltipImmediate();
   }
 }
 
 function onClubScheduleRootClick(e) {
+  var root = document.getElementById("clubScheduleCalendarsRoot");
+  if (!root || !root.contains(e.target)) return;
+
   var navBtn = e.target.closest(".club-cal-nav-btn");
   if (navBtn && clubScheduleViewYear !== null && clubScheduleViewMonth !== null) {
     if (navBtn.disabled) return;
@@ -1144,21 +1199,32 @@ function onClubScheduleRootClick(e) {
     renderClubScheduleCalendars();
     return;
   }
-  onClubScheduleDayClick(e);
+
+  var dayBtn = e.target.closest(".club-cal-day-btn");
+  if (dayBtn) {
+    onClubScheduleDayClick(e);
+    return;
+  }
+
+  /** 요일 헤더·빈 칸·카드 여백 등 날짜 버튼이 아닌 영역 */
+  if (clubScheduleIsTooltipOpen()) {
+    clubScheduleDismissPopup();
+  }
 }
 
 function onClubScheduleDocumentClick(e) {
   var tip = document.getElementById("clubScheduleTooltip");
-  if (!tip || tip.hasAttribute("hidden")) return;
+  if (!tip || !clubScheduleIsTooltipOpen()) return;
   if (tip.contains(e.target)) return;
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (root && root.contains(e.target)) return;
-  hideClubScheduleTooltip();
+  clubScheduleDismissPopup();
 }
 
 function onClubScheduleEscape(e) {
   if (e.key !== "Escape") return;
-  hideClubScheduleTooltip();
+  if (!clubScheduleIsTooltipOpen()) return;
+  clubScheduleDismissPopup();
 }
 
 function bindClubScheduleInteractions() {
@@ -1173,13 +1239,21 @@ function bindClubScheduleInteractions() {
   if (tip && tip.dataset.scheduleTooltipActionsBound !== "1") {
     tip.dataset.scheduleTooltipActionsBound = "1";
     tip.addEventListener("click", function (e) {
+      var closeBtn = e.target.closest("#clubScheduleTooltipClose");
+      if (closeBtn && tip.contains(closeBtn)) {
+        e.preventDefault();
+        e.stopPropagation();
+        clubScheduleDismissPopup();
+        return;
+      }
       var btn = e.target.closest(".club-schedule-tooltip__btn");
       if (!btn || !tip.contains(btn)) return;
       e.stopPropagation();
       var nameMatch = btn.getAttribute("data-club-schedule-detail");
       if (!nameMatch) return;
       var club = findClubForScheduleNameMatch(nameMatch);
-      hideClubScheduleTooltip();
+      clearClubScheduleSelection(document.getElementById("clubScheduleCalendarsRoot"));
+      hideClubScheduleTooltipImmediate();
       if (club && typeof openClubModal === "function") {
         openClubModal(club);
       }
@@ -1191,7 +1265,7 @@ function renderClubScheduleCalendars() {
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (!root) return;
 
-  hideClubScheduleTooltip();
+  hideClubScheduleTooltipImmediate();
 
   if (clubScheduleViewYear === null || clubScheduleViewMonth === null) {
     var iv = clubScheduleInitialView();

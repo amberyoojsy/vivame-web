@@ -1151,11 +1151,15 @@ p,
   }
 }
 
-/* 선택된 날짜 */
+/* 선택된 날짜 — 해제 시 배경도 0.2s 전환 */
 .club-cal-day-btn.club-cal-cell--selected {
   background-color: #00b0f0 !important;
   border-color: #0099d4 !important;
   box-shadow: 0 10px 28px rgba(0, 176, 240, 0.35);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .club-cal-day-btn.club-cal-cell--selected .club-cal-day-num {
@@ -1182,7 +1186,7 @@ p,
   position: fixed;
   z-index: 70;
   max-width: min(20rem, calc(100vw - 2rem));
-  padding: 0.65rem 0.85rem;
+  padding: 1.15rem 0.85rem 0.65rem;
   background-color: #ffffff;
   border: 1px solid rgba(0, 176, 240, 0.35);
   border-radius: 0.75rem;
@@ -1202,9 +1206,49 @@ p,
   transform: translateY(0);
 }
 
+.club-schedule-tooltip.is-hiding {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
 .club-schedule-tooltip[hidden] {
   display: none !important;
   pointer-events: none;
+}
+
+.club-schedule-tooltip__close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.club-schedule-tooltip__close:hover {
+  color: #00b0f0;
+  background-color: rgba(0, 176, 240, 0.08);
+}
+
+.club-schedule-tooltip__close:focus {
+  outline: none;
+}
+
+.club-schedule-tooltip__close:focus-visible {
+  outline: 2px solid #00b0f0;
+  outline-offset: 1px;
 }
 
 .club-schedule-tooltip__body {
@@ -1212,6 +1256,7 @@ p,
   flex-direction: column;
   gap: 0.45rem;
   min-width: 0;
+  padding-right: 0.25rem;
 }
 
 .club-schedule-tooltip__btn {
