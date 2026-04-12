@@ -822,19 +822,49 @@ function renderClubCards() {
 }
 
 /**
- * 달력 반복 일정 규칙 (0=일 … 6=토).
- * nameMatch는 CLUB_PORTAL_CLUBS 항목의 name에 부분 일치로 연결됨.
- * iconEmoji + chipName: 칸 하단 포인트 칩 UI
+ * 달력 일정 규칙
+ * - weekdays: 매주 해당 요일 (0=일 … 6=토). 비우면 요일 반복 없음.
+ * - specificDates: { year, month(0=1월), day } 고정 일정 (예: 2026년 4월 21일)
+ * - chipVariant: 칩 색상 구분용 CSS 접미사 (wonmore / ttegureu / daramji)
+ * - iconEmoji: 비우면 이모지 없이 텍스트만
  *
- * @type {{ nameMatch: string, weekdays: number[], shortLabel: string, iconEmoji: string, chipName: string }[]}
+ * @type {{
+ *   nameMatch: string,
+ *   weekdays: number[],
+ *   specificDates: { year: number, month: number, day: number }[],
+ *   shortLabel: string,
+ *   chipName: string,
+ *   chipVariant: string,
+ *   iconEmoji: string,
+ * }[]}
  */
 var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "원모어",
     weekdays: [2, 4],
-    shortLabel: "💪 원모어",
-    iconEmoji: "💪",
+    specificDates: [],
+    shortLabel: "원모어",
     chipName: "원모어",
+    chipVariant: "wonmore",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "떼구르",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 30 }],
+    shortLabel: "떼구르",
+    chipName: "떼구르",
+    chipVariant: "ttegureu",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "다람지",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 21 }],
+    shortLabel: "다람지",
+    chipName: "다람지",
+    chipVariant: "daramji",
+    iconEmoji: "",
   },
 ];
 
@@ -901,7 +931,18 @@ function clubScheduleEventsForDay(year, monthIndex, day) {
   var out = [];
   for (var i = 0; i < CLUB_SCHEDULE_RULES.length; i++) {
     var rule = CLUB_SCHEDULE_RULES[i];
-    if (rule.weekdays.indexOf(dow) !== -1) {
+    var byWeekday = rule.weekdays && rule.weekdays.length && rule.weekdays.indexOf(dow) !== -1;
+    var byDate = false;
+    if (rule.specificDates && rule.specificDates.length) {
+      for (var j = 0; j < rule.specificDates.length; j++) {
+        var sd = rule.specificDates[j];
+        if (sd.year === year && sd.month === monthIndex && sd.day === day) {
+          byDate = true;
+          break;
+        }
+      }
+    }
+    if (byWeekday || byDate) {
       out.push(rule);
     }
   }
@@ -931,13 +972,22 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
       chipsHtml = '<div class="club-cal-chips-row">';
       for (var ei = 0; ei < events.length; ei++) {
         var ev = events[ei];
-        var em = ev.iconEmoji || "•";
         var nm = ev.chipName || ev.nameMatch;
+        var variant = ev.chipVariant ? " club-cal-chip--" + ev.chipVariant : "";
+        var emojiPart = "";
+        if (ev.iconEmoji) {
+          emojiPart =
+            '<span class="club-cal-chip-emoji" aria-hidden="true">' +
+            ev.iconEmoji +
+            "</span>";
+        }
         chipsHtml +=
-          '<span class="club-cal-chip">' +
-          '<span class="club-cal-chip-emoji" aria-hidden="true">' +
-          em +
-          '</span><span class="club-cal-chip-name">' +
+          '<span class="club-cal-chip' +
+          variant +
+          (emojiPart ? "" : " club-cal-chip--text-only") +
+          '">' +
+          emojiPart +
+          '<span class="club-cal-chip-name">' +
           escapeHtmlText(nm) +
           "</span></span>";
       }

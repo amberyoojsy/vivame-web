@@ -1174,6 +1174,40 @@ p,
   border: 1px solid rgba(0, 176, 240, 0.12);
 }
 
+/* 이모지 없이 텍스트만 — 좌우 여백 균형 */
+.club-cal-chip--text-only {
+  gap: 0;
+  padding: 0.12rem 0.34rem;
+}
+
+/* 동호회별 칩 색 (텍스트만, 이모지 없음 권장) */
+.club-cal-chip--wonmore {
+  background: rgba(0, 176, 240, 0.1);
+  border-color: rgba(0, 176, 240, 0.28);
+}
+
+.club-cal-chip--wonmore .club-cal-chip-name {
+  color: #0369a1;
+}
+
+.club-cal-chip--ttegureu {
+  background: rgba(139, 92, 246, 0.11);
+  border-color: rgba(139, 92, 246, 0.32);
+}
+
+.club-cal-chip--ttegureu .club-cal-chip-name {
+  color: #6d28d9;
+}
+
+.club-cal-chip--daramji {
+  background: rgba(16, 185, 129, 0.11);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.club-cal-chip--daramji .club-cal-chip-name {
+  color: #047857;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
