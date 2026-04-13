@@ -849,24 +849,6 @@ var CLUB_SCHEDULE_RULES = [
     iconEmoji: "",
   },
   {
-    nameMatch: "떼구르",
-    weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 30 }],
-    shortLabel: "떼구르",
-    chipName: "떼구르",
-    chipVariant: "ttegureu",
-    iconEmoji: "",
-  },
-  {
-    nameMatch: "다람지",
-    weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 21 }],
-    shortLabel: "다람지",
-    chipName: "다람지",
-    chipVariant: "daramji",
-    iconEmoji: "",
-  },
-  {
     nameMatch: "AVOCADO",
     weekdays: [],
     specificDates: [
@@ -875,7 +857,7 @@ var CLUB_SCHEDULE_RULES = [
     ],
     shortLabel: "아보카도",
     chipName: "아보카도",
-    chipVariant: "wonmore",
+    chipVariant: "avocado",
     iconEmoji: "",
   },
   {
@@ -884,7 +866,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [{ year: 2026, month: 4, day: 15 }],
     shortLabel: "팝케팅",
     chipName: "팝케팅",
-    chipVariant: "ttegureu",
+    chipVariant: "popketing",
     iconEmoji: "",
   },
   {
@@ -893,7 +875,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [{ year: 2026, month: 3, day: 16 }],
     shortLabel: "비상다독",
     chipName: "비상다독",
-    chipVariant: "daramji",
+    chipVariant: "bisangdadok",
     iconEmoji: "",
   },
   {
@@ -902,7 +884,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [{ year: 2026, month: 3, day: 9 }],
     shortLabel: "포시즌스",
     chipName: "포시즌스",
-    chipVariant: "wonmore",
+    chipVariant: "fourseasons",
     iconEmoji: "",
   },
 ];
@@ -1504,6 +1486,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
