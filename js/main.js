@@ -866,6 +866,45 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "daramji",
     iconEmoji: "",
   },
+  {
+    nameMatch: "AVOCADO",
+    weekdays: [],
+    specificDates: [
+      { year: 2026, month: 3, day: 15 },
+      { year: 2026, month: 4, day: 6 },
+    ],
+    shortLabel: "아보카도",
+    chipName: "아보카도",
+    chipVariant: "wonmore",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "팝케팅",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 4, day: 15 }],
+    shortLabel: "팝케팅",
+    chipName: "팝케팅",
+    chipVariant: "ttegureu",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "비상다독",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 16 }],
+    shortLabel: "비상다독",
+    chipName: "비상다독",
+    chipVariant: "daramji",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "포시즌스",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 9 }],
+    shortLabel: "포시즌스",
+    chipName: "포시즌스",
+    chipVariant: "wonmore",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
@@ -1465,6 +1504,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
