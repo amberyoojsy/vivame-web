@@ -1270,6 +1270,15 @@ p,
 .club-cal-chip--bisangturn .club-cal-chip-name {
   color: #334155;
 }
+
+.club-cal-chip--grip {
+  background: rgba(217, 119, 6, 0.14);
+  border-color: rgba(217, 119, 6, 0.34);
+}
+
+.club-cal-chip--grip .club-cal-chip-name {
+  color: #92400e;
+}
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
